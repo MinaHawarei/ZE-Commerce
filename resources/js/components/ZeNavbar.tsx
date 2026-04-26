@@ -13,6 +13,9 @@ export default function ZeNavbar({ toggleCart }: { toggleCart: () => void }) {
                 <Link className="text-slate-400 font-inter tracking-tight font-medium hover:text-white hover:bg-white/5 transition-all duration-300 active:scale-95" href="/services?category=Web">Infrastructure</Link>
                 <Link className="text-slate-400 font-inter tracking-tight font-medium hover:text-white hover:bg-white/5 transition-all duration-300 active:scale-95" href="/services?category=Apps">Intelligence</Link>
                 <Link className="text-slate-400 font-inter tracking-tight font-medium hover:text-white hover:bg-white/5 transition-all duration-300 active:scale-95" href="/services?category=ERP">Enterprise</Link>
+                <Link className="text-[#0066FF] border-b-2 border-[#0066FF] pb-1 font-inter tracking-tight font-medium hover:text-white hover:bg-white/5 transition-all duration-300 active:scale-95" href="/about">About Us</Link>
+                <Link className="text-[#0066FF] border-b-2 border-[#0066FF] pb-1 font-inter tracking-tight font-medium hover:text-white hover:bg-white/5 transition-all duration-300 active:scale-95" href="/contact">Contact Us</Link>
+
             </nav>
             <div className="flex items-center gap-6">
                 <span onClick={toggleCart} className="material-symbols-outlined text-slate-400 cursor-pointer hover:text-[#0066FF] transition-colors relative">

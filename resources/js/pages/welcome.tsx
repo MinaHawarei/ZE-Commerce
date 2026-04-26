@@ -12,7 +12,7 @@ export default function Welcome() {
 
     const toggleCart = () => setIsCartOpen(!isCartOpen);
     const closeCart = () => setIsCartOpen(false);
-    
+
     const handleCartUpdated = () => {
         setCartRefreshTrigger(prev => prev + 1);
     };
@@ -47,16 +47,16 @@ export default function Welcome() {
             </Head>
 
             <ZeNavbar toggleCart={toggleCart} />
-            
-            <main className="pt-24">
+
+            <main>
                 <ZeHero />
                 <ZeServiceCards setCartUpdated={handleCartUpdated} />
             </main>
 
-            <ZeCartSidebar 
-                isOpen={isCartOpen} 
-                closeCart={closeCart} 
-                refreshTrigger={cartRefreshTrigger} 
+            <ZeCartSidebar
+                isOpen={isCartOpen}
+                closeCart={closeCart}
+                refreshTrigger={cartRefreshTrigger}
             />
 
             <ZeFooter />
