@@ -1,5 +1,5 @@
 import { Link } from '@inertiajs/react';
-import { BookOpen, Boxes, Headset, LayoutDashboard, PackageSearch, Ticket, Users } from 'lucide-react';
+import { CornerUpLeft, Boxes, Headset, LayoutDashboard, PackageSearch, Ticket, Users } from 'lucide-react';
 import AppLogo from '@/components/app-logo';
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
@@ -75,7 +75,7 @@ const footerNavItems: NavItem[] = [
     {
         title: 'Back to Store',
         href: home(),
-        icon: BookOpen,
+        icon: CornerUpLeft,
     },
 ];
     return (

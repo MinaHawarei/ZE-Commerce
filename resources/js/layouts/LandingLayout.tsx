@@ -2,6 +2,7 @@ import React from 'react';
 import { Head } from '@inertiajs/react';
 import ZeNavbar from '@/components/ZeNavbar';
 import ZeFooter from '@/components/ZeFooter';
+import ZeCartSidebar from '@/components/ZeCartSidebar';
 
 type LandingLayoutProps = {
     children: React.ReactNode;
@@ -12,7 +13,7 @@ type LandingLayoutProps = {
 
 export default function LandingLayout({
     children,
-    toggleCart = () => {},
+    toggleCart,
     showFooter = true,
     className = '',
 }: LandingLayoutProps) {
@@ -53,6 +54,7 @@ export default function LandingLayout({
             </Head>
 
             <ZeNavbar toggleCart={toggleCart} />
+            <ZeCartSidebar />
 
             <main>{children}</main>
 

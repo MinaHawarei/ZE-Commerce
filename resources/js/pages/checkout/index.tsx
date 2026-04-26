@@ -32,17 +32,17 @@ export default function Checkout({ cart, items, totals }: any) {
                                 <CreditCard aria-hidden="true" className="w-5 h-5 text-[#0066ff]" />
                                 Payment Details
                             </h2>
-                            
+
                             <form onSubmit={submit} className="space-y-6">
                                 <div>
                                     <label className="text-xs uppercase tracking-widest text-slate-400 font-medium mb-2 block">Cardholder Name</label>
-                                    <input 
-                                        type="text" 
+                                    <input
+                                        type="text"
                                         value={data.cardholder_name}
                                         onChange={e => setData('cardholder_name', e.target.value)}
                                         className="w-full bg-[#0A0A0B] border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[#0066ff] outline-none transition-all"
                                         placeholder="JANE DOE"
-                                        required 
+                                        required
                                     />
                                     {errors.cardholder_name && <div className="text-red-500 text-xs mt-1">{errors.cardholder_name}</div>}
                                 </div>
@@ -50,13 +50,13 @@ export default function Checkout({ cart, items, totals }: any) {
                                 <div>
                                     <label className="text-xs uppercase tracking-widest text-slate-400 font-medium mb-2 block">Card Number</label>
                                     <div className="relative">
-                                        <input 
-                                            type="text" 
+                                        <input
+                                            type="text"
                                             value={data.card_number}
                                             onChange={e => setData('card_number', e.target.value)}
                                             className="w-full bg-[#0A0A0B] border border-white/10 rounded-xl pl-12 pr-4 py-3 text-white focus:border-[#0066ff] outline-none font-space tracking-widest transition-all"
                                             placeholder="4242 4242 4242 4242"
-                                            required 
+                                            required
                                         />
                                         <CreditCard aria-hidden="true" className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 w-5 h-5" />
                                     </div>
@@ -66,32 +66,32 @@ export default function Checkout({ cart, items, totals }: any) {
                                 <div className="grid grid-cols-2 gap-6">
                                     <div>
                                         <label className="text-xs uppercase tracking-widest text-slate-400 font-medium mb-2 block">Expiry Date</label>
-                                        <input 
-                                            type="text" 
+                                        <input
+                                            type="text"
                                             value={data.expiry_date}
                                             onChange={e => setData('expiry_date', e.target.value)}
                                             className="w-full bg-[#0A0A0B] border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[#0066ff] outline-none font-space tracking-widest transition-all"
                                             placeholder="MM/YY"
-                                            required 
+                                            required
                                         />
                                         {errors.expiry_date && <div className="text-red-500 text-xs mt-1">{errors.expiry_date}</div>}
                                     </div>
                                     <div>
                                         <label className="text-xs uppercase tracking-widest text-slate-400 font-medium mb-2 block">CVV</label>
-                                        <input 
-                                            type="text" 
+                                        <input
+                                            type="text"
                                             value={data.cvv}
                                             onChange={e => setData('cvv', e.target.value)}
                                             className="w-full bg-[#0A0A0B] border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[#0066ff] outline-none font-space tracking-widest transition-all"
                                             placeholder="123"
-                                            required 
+                                            required
                                         />
                                         {errors.cvv && <div className="text-red-500 text-xs mt-1">{errors.cvv}</div>}
                                     </div>
                                 </div>
 
-                                <button 
-                                    type="submit" 
+                                <button
+                                    type="submit"
                                     disabled={processing}
                                     className="w-full bg-[#0066ff] text-white py-4 font-space font-bold text-sm uppercase tracking-widest rounded-xl transition-all glow-blue hover:bg-blue-600 active:scale-95 disabled:bg-slate-700 mt-8 shadow-[0_0_20px_rgba(0,102,255,0.3)]"
                                 >
@@ -108,7 +108,7 @@ export default function Checkout({ cart, items, totals }: any) {
                     <div className="lg:col-span-5">
                         <div className="bg-white/5 border border-white/10 backdrop-blur-xl p-8 rounded-[24px] sticky top-32">
                             <h2 className="text-xl font-bold text-white mb-6">Order Summary</h2>
-                            
+
                             <div className="space-y-4 mb-6">
                                 {items.map((item: any, idx: number) => (
                                     <div key={idx} className="flex justify-between items-center py-3 border-b border-white/5 last:border-0">

@@ -1,71 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { ShoppingCart, Trash2, X } from 'lucide-react';
+import { useCart } from '@/context/cart';
 
-interface CartItem {
-    id: number;
-    price_at_purchase: string;
-    service: {
-        id: number;
-        title: string;
-        category: string;
-    };
-}
-
-interface CartData {
-    cart: {
-        id: number;
-        status: string;
-    };
-    items: CartItem[];
-    totals: {
-        grand_total: number;
-        items_count: number;
-    };
-}
-
-export default function ZeCartSidebar({ isOpen, closeCart, refreshTrigger }: { isOpen: boolean, closeCart: () => void, refreshTrigger: number }) {
-    const [cartData, setCartData] = useState<CartData | null>(null);
-    const [loading, setLoading] = useState(false);
-
-    const fetchCart = async () => {
-        setLoading(true);
-        try {
-            const res = await fetch('/cart', {
-                headers: { 'Accept': 'application/json' }
-            });
-            const data = await res.json();
-            if (data.cart) {
-                setCartData(data);
-            }
-        } catch (error) {
-            console.error("Failed to fetch cart", error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    useEffect(() => {
-        if (isOpen || refreshTrigger > 0) {
-            fetchCart();
-        }
-    }, [isOpen, refreshTrigger]);
-
-    const removeItem = async (itemId: number) => {
-        try {
-            const res = await fetch(`/cart/${itemId}`, {
-                method: 'DELETE',
-                headers: {
-                    'Accept': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
-                }
-            });
-            if (res.ok) {
-                fetchCart(); // refresh after remove
-            }
-        } catch (error) {
-            console.error("Failed to remove item", error);
-        }
-    };
+export default function ZeCartSidebar() {
+    const cart = useCart();
+    const { isOpen, closeCart, cartData, loading, removeItem } = cart;
 
     return (
         <>

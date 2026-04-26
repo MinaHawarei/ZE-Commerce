@@ -1,26 +1,15 @@
 import React, { useState } from 'react';
 import { Head, Link } from '@inertiajs/react';
 import ZeNavbar from '@/components/ZeNavbar';
-import ZeCartSidebar from '@/components/ZeCartSidebar';
 import { ArrowLeft, Check, Puzzle, ShieldCheck, ShoppingCart } from 'lucide-react';
+import { useCart } from '@/context/cart';
 
 export default function ServiceShow({ service }: any) {
-    const [cartOpen, setCartOpen] = useState(false);
-    const [cartRefresh, setCartRefresh] = useState(0);
+    const cart = useCart();
 
     const handleAddToCart = async () => {
         try {
-            await fetch('/cart', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
-                },
-                body: JSON.stringify({ service_id: service.id })
-            });
-            setCartRefresh(prev => prev + 1);
-            setCartOpen(true);
+            await cart.addItem(service.id, { openCart: true });
         } catch (error) {
             console.error(error);
         }
@@ -32,8 +21,7 @@ export default function ServiceShow({ service }: any) {
                 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet" />
             </Head>
 
-            <ZeNavbar toggleCart={() => setCartOpen(true)} />
-            <ZeCartSidebar isOpen={cartOpen} closeCart={() => setCartOpen(false)} refreshTrigger={cartRefresh} />
+            <ZeNavbar />
 
             <div className="max-w-[1200px] mx-auto px-8 relative z-10 py-12">
                 <Link href="/services" className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors mb-10 text-sm font-medium">

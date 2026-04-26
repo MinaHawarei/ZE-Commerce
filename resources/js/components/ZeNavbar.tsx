@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { Link, usePage } from '@inertiajs/react';
 import { Menu, ShoppingCart, User, X } from 'lucide-react';
+import { useCart } from '@/context/cart';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -23,7 +24,7 @@ interface NavLink {
 }
 
 interface ZeNavbarProps {
-    toggleCart: () => void;
+    toggleCart?: () => void;
     cartCount?: number;
 }
 
@@ -129,6 +130,7 @@ function MobileMenu({
 export default function ZeNavbar({ toggleCart, cartCount = 0 }: ZeNavbarProps) {
     const { auth, ziggy } = usePage<PageProps & { ziggy?: { location: string } }>().props;
     const [mobileOpen, setMobileOpen] = useState(false);
+    const cart = useCart();
 
     // Derive current path from Inertia's ziggy location or fallback to window
     const currentUrl =
@@ -169,14 +171,17 @@ export default function ZeNavbar({ toggleCart, cartCount = 0 }: ZeNavbarProps) {
                         {/* Cart Button */}
                         <button
                             type="button"
-                            onClick={toggleCart}
-                            aria-label={`Open cart${cartCount > 0 ? `, ${cartCount} items` : ''}`}
+                            onClick={toggleCart ?? cart.toggleCart}
+                            aria-label={`Open cart${(toggleCart ? cartCount : cart.itemsCount) > 0 ? `, ${toggleCart ? cartCount : cart.itemsCount} items` : ''}`}
                             className="relative text-slate-400 hover:text-[#0066FF] transition-colors cursor-pointer"
+                            ref={(el) => {
+                                cart.cartIconRef.current = el;
+                            }}
                         >
                             <ShoppingCart aria-hidden="true" className="w-5 h-5" />
-                            {cartCount > 0 && (
+                            {(toggleCart ? cartCount : cart.itemsCount) > 0 && (
                                 <span className="absolute -top-1.5 -right-1.5 min-w-[18px] h-[18px] px-0.5 bg-[#0066FF] text-white text-[10px] font-bold rounded-full flex items-center justify-center leading-none">
-                                    {cartCount > 99 ? '99+' : cartCount}
+                                    {(toggleCart ? cartCount : cart.itemsCount) > 99 ? '99+' : (toggleCart ? cartCount : cart.itemsCount)}
                                 </span>
                             )}
                         </button>

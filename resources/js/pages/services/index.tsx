@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Head, Link, router } from '@inertiajs/react';
 import { Eye, Search, SearchX, ShoppingCart } from 'lucide-react';
 import LandingLayout from '@/layouts/LandingLayout';
+import { useCart } from '@/context/cart';
 
 interface Service {
     id: number;
@@ -13,9 +14,8 @@ interface Service {
 }
 
 export default function ServicesIndex({ services, categories, activeCategory, search }: any) {
-    const [cartOpen, setCartOpen] = useState(false);
-    const [cartRefresh, setCartRefresh] = useState(0);
     const [searchTerm, setSearchTerm] = useState(search || '');
+    const cart = useCart();
 
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault();
@@ -27,19 +27,9 @@ export default function ServicesIndex({ services, categories, activeCategory, se
         router.get('/services');
     };
 
-    const handleAddToCart = async (serviceId: number) => {
+    const handleAddToCart = async (serviceId: number, fromEl: HTMLElement | null) => {
         try {
-            await fetch('/cart', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
-                },
-                body: JSON.stringify({ service_id: serviceId })
-            });
-            setCartRefresh(prev => prev + 1);
-            setCartOpen(true);
+            await cart.addItem(serviceId, { fromEl, openCart: true });
         } catch (error) {
             console.error(error);
         }
@@ -110,7 +100,10 @@ export default function ServicesIndex({ services, categories, activeCategory, se
                                     <Link href={`/services/${service.slug}`} className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-slate-300 hover:bg-white/5 transition-all">
                                         <Eye aria-hidden="true" size={20} className="text-current" />
                                     </Link>
-                                    <button onClick={() => handleAddToCart(service.id)} className="w-12 h-12 rounded-full bg-[#0066FF] flex items-center justify-center text-white hover:bg-blue-600 transition-all shadow-[0_0_20px_rgba(0,102,255,0.4)] active:scale-95">
+                                    <button
+                                        onClick={(e) => handleAddToCart(service.id, e.currentTarget)}
+                                        className="w-12 h-12 rounded-full bg-[#0066FF] flex items-center justify-center text-white hover:bg-blue-600 transition-all shadow-[0_0_20px_rgba(0,102,255,0.4)] active:scale-95"
+                                    >
                                         <ShoppingCart aria-hidden="true" size={20} className="text-current" />
                                     </button>
                                 </div>
