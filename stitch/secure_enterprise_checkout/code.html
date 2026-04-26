@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            background-color: #0A0A0B;
+            color: #e0e2e8;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-panel:hover {
+            border-color: rgba(0, 102, 255, 0.4);
+            box-shadow: 0 0 20px rgba(0, 102, 255, 0.1);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-bright": "#36393e",
+                    "surface-container-highest": "#323539",
+                    "on-tertiary": "#303032",
+                    "inverse-primary": "#0054d6",
+                    "on-primary-fixed": "#001849",
+                    "on-tertiary-container": "#faf7f9",
+                    "primary-container": "#0066ff",
+                    "tertiary-fixed-dim": "#c8c6c8",
+                    "on-primary-fixed-variant": "#003fa4",
+                    "secondary-fixed-dim": "#c8c6c7",
+                    "inverse-surface": "#e0e2e8",
+                    "on-secondary-fixed": "#1c1b1c",
+                    "error-container": "#93000a",
+                    "inverse-on-surface": "#2d3135",
+                    "on-surface": "#e0e2e8",
+                    "outline-variant": "#424656",
+                    "on-surface-variant": "#c2c6d8",
+                    "surface": "#101417",
+                    "secondary-container": "#4a494a",
+                    "background": "#101417",
+                    "on-error-container": "#ffdad6",
+                    "on-tertiary-fixed": "#1b1b1d",
+                    "primary-fixed-dim": "#b3c5ff",
+                    "surface-container": "#1c2024",
+                    "tertiary": "#c8c6c8",
+                    "primary": "#b3c5ff",
+                    "on-tertiary-fixed-variant": "#474649",
+                    "surface-container-lowest": "#0b0f12",
+                    "primary-fixed": "#dae1ff",
+                    "error": "#ffb4ab",
+                    "surface-variant": "#323539",
+                    "outline": "#8c90a1",
+                    "on-error": "#690005",
+                    "surface-dim": "#101417",
+                    "on-secondary-container": "#bab8b9",
+                    "secondary": "#c8c6c7",
+                    "on-background": "#e0e2e8",
+                    "on-secondary": "#313031",
+                    "on-primary-container": "#f8f7ff",
+                    "secondary-fixed": "#e5e2e3",
+                    "on-primary": "#002b75",
+                    "surface-container-high": "#272a2e",
+                    "on-secondary-fixed-variant": "#474647",
+                    "tertiary-container": "#727173",
+                    "surface-container-low": "#181c20",
+                    "surface-tint": "#b3c5ff",
+                    "tertiary-fixed": "#e4e2e4"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "data-mono": ["Space Grotesk"],
+                    "body-lg": ["Inter"],
+                    "h2": ["Inter"],
+                    "body-md": ["Inter"],
+                    "h3": ["Inter"],
+                    "h1": ["Inter"],
+                    "label-caps": ["Space Grotesk"]
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="font-body-md bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/5 backdrop-blur-[20px] flex justify-between items-center px-8 py-4 max-w-[1440px] left-1/2 -translate-x-1/2 border-b border-white/10 shadow-[0_4_24px_rgba(0,0,0,0.5)]">
+<div class="text-2xl font-black tracking-tighter text-slate-100 uppercase font-inter">ZE-Commerce</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-slate-400 font-inter tracking-tight font-medium hover:text-white hover:bg-white/5 transition-all duration-300 px-3 py-2 rounded-lg" href="#">Solutions</a>
+<a class="text-slate-400 font-inter tracking-tight font-medium hover:text-white hover:bg-white/5 transition-all duration-300 px-3 py-2 rounded-lg" href="#">Infrastructure</a>
+<a class="text-slate-400 font-inter tracking-tight font-medium hover:text-white hover:bg-white/5 transition-all duration-300 px-3 py-2 rounded-lg" href="#">Intelligence</a>
+<a class="text-slate-400 font-inter tracking-tight font-medium hover:text-white hover:bg-white/5 transition-all duration-300 px-3 py-2 rounded-lg" href="#">Enterprise</a>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-slate-400 hover:text-white transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+</button>
+<button class="text-slate-400 hover:text-white transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</nav>
+<main class="flex-grow pt-32 pb-20 px-8 max-w-[1440px] mx-auto w-full">
+<!-- Progress Bar Section -->
+<div class="max-w-4xl mx-auto mb-16">
+<div class="flex items-center justify-between relative">
+<!-- Line background -->
+<div class="absolute top-1/2 left-0 w-full h-[1px] bg-white/10 -translate-y-1/2 z-0"></div>
+<!-- Progress Line -->
+<div class="absolute top-1/2 left-0 w-2/3 h-[1px] bg-primary-container -translate-y-1/2 z-0"></div>
+<div class="relative z-10 flex flex-col items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container text-white flex items-center justify-center shadow-[0_0_15px_rgba(0,102,255,0.4)]">
+<span class="material-symbols-outlined text-sm" data-icon="shopping_cart">shopping_cart</span>
+</div>
+<span class="font-label-caps text-label-caps text-primary-container">CART</span>
+</div>
+<div class="relative z-10 flex flex-col items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container text-white flex items-center justify-center shadow-[0_0_15px_rgba(0,102,255,0.4)]">
+<span class="material-symbols-outlined text-sm" data-icon="description">description</span>
+</div>
+<span class="font-label-caps text-label-caps text-primary-container">DETAILS</span>
+</div>
+<div class="relative z-10 flex flex-col items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container border border-white/20 text-slate-400 flex items-center justify-center backdrop-blur-md">
+<span class="material-symbols-outlined text-sm" data-icon="payments">payments</span>
+</div>
+<span class="font-label-caps text-label-caps text-slate-500">PAYMENT</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+<!-- Left Column: Checkout Form -->
+<div class="lg:col-span-8 space-y-10">
+<!-- Business Information -->
+<section class="glass-panel p-8 rounded-xl">
+<div class="flex items-center gap-4 mb-8">
+<span class="material-symbols-outlined text-primary-container" data-icon="business">business</span>
+<h2 class="font-h3 text-h3 text-on-surface">Enterprise Identification</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-slate-400">ORGANIZATION NAME</label>
+<input class="w-full bg-[#0A0A0B] border border-white/10 rounded-lg px-4 py-3 text-on-surface focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-all font-body-md" placeholder="e.g. Neural Dynamics Corp" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-slate-400">VAT / TAX ID</label>
+<input class="w-full bg-[#0A0A0B] border border-white/10 rounded-lg px-4 py-3 text-on-surface focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-all font-body-md" placeholder="EU123456789" type="text"/>
+</div>
+<div class="md:col-span-2 space-y-2">
+<label class="font-label-caps text-label-caps text-slate-400">PRIMARY DEPLOYMENT REGION</label>
+<select class="w-full bg-[#0A0A0B] border border-white/10 rounded-lg px-4 py-3 text-on-surface focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-all font-body-md">
+<option>North America (East-1)</option>
+<option>Europe (Frankfurt-2)</option>
+<option>Asia Pacific (Tokyo-4)</option>
+</select>
+</div>
+</div>
+</section>
+<!-- Payment Method -->
+<section class="glass-panel p-8 rounded-xl">
+<div class="flex items-center gap-4 mb-8">
+<span class="material-symbols-outlined text-primary-container" data-icon="lock">lock</span>
+<h2 class="font-h3 text-h3 text-on-surface">Secure Transaction</h2>
+</div>
+<div class="grid grid-cols-3 gap-4 mb-8">
+<button class="flex flex-col items-center justify-center gap-2 p-4 rounded-lg bg-white/5 border border-primary-container text-primary-container">
+<span class="material-symbols-outlined" data-icon="credit_card">credit_card</span>
+<span class="font-label-caps text-[10px]">CREDIT CARD</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-2 p-4 rounded-lg bg-white/5 border border-white/10 text-slate-400 hover:border-white/30 transition-all">
+<span class="material-symbols-outlined" data-icon="account_balance">account_balance</span>
+<span class="font-label-caps text-[10px]">WIRE TRANSFER</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-2 p-4 rounded-lg bg-white/5 border border-white/10 text-slate-400 hover:border-white/30 transition-all">
+<span class="material-symbols-outlined" data-icon="token">token</span>
+<span class="font-label-caps text-[10px]">CRYPTO PAY</span>
+</button>
+</div>
+<div class="space-y-6">
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-slate-400">CARDHOLDER NAME</label>
+<input class="w-full bg-[#0A0A0B] border border-white/10 rounded-lg px-4 py-3 text-on-surface focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-all font-body-md" placeholder="Johnathan Sterling" type="text"/>
+</div>
+<div class="relative space-y-2">
+<label class="font-label-caps text-label-caps text-slate-400">CARD NUMBER</label>
+<input class="w-full bg-[#0A0A0B] border border-white/10 rounded-lg px-4 py-3 text-on-surface focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-all font-body-md" placeholder="0000 0000 0000 0000" type="text"/>
+<div class="absolute right-4 bottom-3 flex gap-2">
+<div class="w-8 h-5 bg-white/10 rounded-sm"></div>
+<div class="w-8 h-5 bg-white/10 rounded-sm"></div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-slate-400">EXPIRATION DATE</label>
+<input class="w-full bg-[#0A0A0B] border border-white/10 rounded-lg px-4 py-3 text-on-surface focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-all font-body-md" placeholder="MM / YY" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-slate-400">SECURITY CODE</label>
+<input class="w-full bg-[#0A0A0B] border border-white/10 rounded-lg px-4 py-3 text-on-surface focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-all font-body-md" placeholder="CVV" type="password"/>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Sidebar: Order Summary -->
+<aside class="lg:col-span-4">
+<div class="glass-panel p-8 rounded-xl sticky top-28 border-primary-container/20">
+<h2 class="font-h3 text-h3 text-on-surface mb-6">Service Summary</h2>
+<div class="space-y-6 mb-8">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-on-surface font-semibold">Neural Processing Cluster</p>
+<p class="text-slate-500 text-sm">Titan-X8 Architecture</p>
+</div>
+<span class="font-data-mono text-data-mono text-primary-container">$4,890.00</span>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<p class="text-on-surface font-semibold">Cold Data Storage</p>
+<p class="text-slate-500 text-sm">2PB Geo-Redundant</p>
+</div>
+<span class="font-data-mono text-data-mono text-primary-container">$1,200.00</span>
+</div>
+<div class="pt-4 border-t border-white/5 space-y-4">
+<div class="flex justify-between text-slate-400 text-sm">
+<span>Platform Fee</span>
+<span class="font-data-mono">$120.00</span>
+</div>
+<div class="flex justify-between text-slate-400 text-sm">
+<span>Enterprise Security Pack</span>
+<span class="font-data-mono text-primary-container">INCLUDED</span>
+</div>
+</div>
+</div>
+<div class="p-4 bg-primary-container/10 border border-primary-container/20 rounded-lg mb-8">
+<div class="flex justify-between items-center">
+<span class="font-label-caps text-slate-300">ESTIMATED TOTAL</span>
+<span class="font-h2 text-h2 text-primary-container">$6,210.00</span>
+</div>
+<p class="text-[10px] text-slate-500 mt-2 font-label-caps">BILLED QUARTERLY - EXCLUDES LOCAL TAX</p>
+</div>
+<button class="w-full bg-primary-container text-white py-4 rounded-lg font-h3 shadow-[0_0_30px_rgba(0,102,255,0.3)] hover:scale-[1.02] active:scale-95 transition-all duration-300 mb-6">
+                        Confirm &amp; Deploy Cluster
+                    </button>
+<div class="flex items-center justify-center gap-2 text-slate-500">
+<span class="material-symbols-outlined text-xs" data-icon="verified_user">verified_user</span>
+<span class="text-xs uppercase tracking-widest font-inter">AES-256 BANK-GRADE ENCRYPTION</span>
+</div>
+</div>
+<div class="mt-6 glass-panel p-4 rounded-xl">
+<div class="flex items-center gap-3">
+<img alt="Advisor" class="w-12 h-12 rounded-full grayscale" data-alt="portrait of a professional female customer success manager with a confident and friendly expression in a modern office" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAoTHMhy5RCQnJIVJrpZTFQkS39nCSf2A4MLn8Ht8Oq-uu55QTOwpCtkzjx7rM176n049fiMzKy5BJqkw7Ax1z1Vdhs0D58xzU08KDMF6cAvEHvRp1_Q_u1bTgh01l959QkReirOvJ2n4BZqTNJT3g_2wZTCgQ5rvnp4qqtEM3HixKgnpFoZRQzptZsI5V3g6HG5ShAqk1jYgiX27CewdLzXAL3KfZ0alwCaS0mPmmoLizrSQ4zKEDFEUUXpaoTnd8gO6v8j_Zv5I"/>
+<div>
+<p class="text-xs font-bold text-on-surface">Deployment Advisor</p>
+<p class="text-[10px] text-primary-container">Online Now</p>
+</div>
+<button class="ml-auto text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+</button>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-[#0A0A0B] border-t border-white/5">
+<div class="w-full max-w-[1440px] mx-auto px-12 py-10 flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex flex-col gap-2">
+<div class="text-sm font-bold text-slate-300 uppercase font-inter">ZE-Commerce</div>
+<p class="font-inter text-xs text-slate-500 uppercase tracking-widest">© 2024 ZE-Commerce. Engineered for Technical Excellence.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-inter text-xs text-slate-600 uppercase tracking-widest hover:text-white transition-colors cursor-pointer" href="#">Service Level Agreement</a>
+<a class="font-inter text-xs text-slate-600 uppercase tracking-widest hover:text-white transition-colors cursor-pointer" href="#">Network Status</a>
+<a class="font-inter text-xs text-slate-600 uppercase tracking-widest hover:text-white transition-colors cursor-pointer" href="#">Enterprise Security</a>
+<a class="font-inter text-xs text-slate-600 uppercase tracking-widest hover:text-white transition-colors cursor-pointer" href="#">Terms of Deployment</a>
+</div>
+</div>
+</footer>
+</body></html>

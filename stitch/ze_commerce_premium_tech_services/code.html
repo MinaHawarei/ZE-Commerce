@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            background-color: #0A0A0B;
+            color: #e0e2e8;
+            overflow-x: hidden;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glow-blue {
+            box-shadow: 0 0 20px rgba(0, 102, 255, 0.3);
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 50%, rgba(0, 102, 255, 0.15) 0%, transparent 70%);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#36393e",
+                        "surface-container-highest": "#323539",
+                        "on-tertiary": "#303032",
+                        "inverse-primary": "#0054d6",
+                        "on-primary-fixed": "#001849",
+                        "on-tertiary-container": "#faf7f9",
+                        "primary-container": "#0066ff",
+                        "tertiary-fixed-dim": "#c8c6c8",
+                        "on-primary-fixed-variant": "#003fa4",
+                        "secondary-fixed-dim": "#c8c6c7",
+                        "inverse-surface": "#e0e2e8",
+                        "on-secondary-fixed": "#1c1b1c",
+                        "error-container": "#93000a",
+                        "inverse-on-surface": "#2d3135",
+                        "on-surface": "#e0e2e8",
+                        "outline-variant": "#424656",
+                        "on-surface-variant": "#c2c6d8",
+                        "surface": "#101417",
+                        "secondary-container": "#4a494a",
+                        "background": "#101417",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#1b1b1d",
+                        "primary-fixed-dim": "#b3c5ff",
+                        "surface-container": "#1c2024",
+                        "tertiary": "#c8c6c8",
+                        "primary": "#b3c5ff",
+                        "on-tertiary-fixed-variant": "#474649",
+                        "surface-container-lowest": "#0b0f12",
+                        "primary-fixed": "#dae1ff",
+                        "error": "#ffb4ab",
+                        "surface-variant": "#323539",
+                        "outline": "#8c90a1",
+                        "on-error": "#690005",
+                        "surface-dim": "#101417",
+                        "on-secondary-container": "#bab8b9",
+                        "secondary": "#c8c6c7",
+                        "on-background": "#e0e2e8",
+                        "on-secondary": "#313031",
+                        "on-primary-container": "#f8f7ff",
+                        "secondary-fixed": "#e5e2e3",
+                        "on-primary": "#002b75",
+                        "surface-container-high": "#272a2e",
+                        "on-secondary-fixed-variant": "#474647",
+                        "tertiary-container": "#727173",
+                        "surface-container-low": "#181c20",
+                        "surface-tint": "#b3c5ff",
+                        "tertiary-fixed": "#e4e2e4"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "stack-md": "24px",
+                        "stack-lg": "48px",
+                        "container-max": "1440px",
+                        "unit": "8px",
+                        "gutter": "24px",
+                        "stack-sm": "12px",
+                        "margin-x": "40px"
+                    },
+                    "fontFamily": {
+                        "data-mono": ["Space Grotesk"],
+                        "body-lg": ["Inter"],
+                        "h2": ["Inter"],
+                        "body-md": ["Inter"],
+                        "h3": ["Inter"],
+                        "h1": ["Inter"],
+                        "label-caps": ["Space Grotesk"]
+                    },
+                    "fontSize": {
+                        "data-mono": ["14px", {"lineHeight": "1", "letterSpacing": "0", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                        "h2": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                        "h3": ["24px", {"lineHeight": "1.3", "letterSpacing": "0", "fontWeight": "600"}],
+                        "h1": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface selection:bg-primary-container selection:text-white">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-8 py-4 max-w-[1440px] left-1/2 -translate-x-1/2 bg-white/5 backdrop-blur-[20px] border-b border-white/10 shadow-[0_4_24px_rgba(0,0,0,0.5)]">
+<div class="text-2xl font-black tracking-tighter text-slate-100 uppercase font-inter">ZE-Commerce</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-[#0066FF] border-b-2 border-[#0066FF] pb-1 font-inter tracking-tight font-medium hover:text-white hover:bg-white/5 transition-all duration-300 active:scale-95 duration-200" href="#">Solutions</a>
+<a class="text-slate-400 font-inter tracking-tight font-medium hover:text-white hover:bg-white/5 transition-all duration-300 active:scale-95 duration-200" href="#">Infrastructure</a>
+<a class="text-slate-400 font-inter tracking-tight font-medium hover:text-white hover:bg-white/5 transition-all duration-300 active:scale-95 duration-200" href="#">Intelligence</a>
+<a class="text-slate-400 font-inter tracking-tight font-medium hover:text-white hover:bg-white/5 transition-all duration-300 active:scale-95 duration-200" href="#">Enterprise</a>
+</nav>
+<div class="flex items-center gap-6">
+<span class="material-symbols-outlined text-slate-400 cursor-pointer hover:text-[#0066FF] transition-colors" data-icon="shopping_cart">shopping_cart</span>
+<span class="material-symbols-outlined text-slate-400 cursor-pointer hover:text-[#0066FF] transition-colors" data-icon="account_circle">account_circle</span>
+</div>
+</header>
+<main class="pt-24">
+<!-- Hero Section -->
+<section class="relative min-h-[921px] flex items-center px-gutter max-w-[1440px] mx-auto overflow-hidden">
+<div class="absolute inset-0 hero-gradient -z-10"></div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full">
+<div class="space-y-stack-lg z-10">
+<div class="inline-block px-4 py-1 rounded-full border border-primary/20 bg-primary/5">
+<span class="font-data-mono text-primary text-label-caps">NEXT-GENERATION INFRASTRUCTURE</span>
+</div>
+<h1 class="font-h1 text-h1 text-on-surface leading-tight">
+                        Powering the Future of <span class="text-primary-container">Technical Commerce.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                        Deploy high-performance neural nodes and cloud infrastructure with surgical precision. ZE-Commerce provides the backbone for enterprise intelligence.
+                    </p>
+<div class="flex flex-wrap gap-stack-md pt-4">
+<button class="bg-primary-container text-on-primary-container font-label-caps text-label-caps px-8 py-4 rounded transition-all glow-blue active:scale-95">
+                            DECODE SOLUTIONS
+                        </button>
+<button class="glass-panel text-on-surface font-label-caps text-label-caps px-8 py-4 rounded hover:bg-white/10 transition-all active:scale-95">
+                            VIEW ARCHITECTURE
+                        </button>
+</div>
+</div>
+<div class="relative hidden lg:block h-[600px]">
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-full h-full glass-panel rounded-xl overflow-hidden shadow-2xl">
+<img alt="3D abstract technology visualization" class="w-full h-full object-cover opacity-60 mix-blend-screen" data-alt="abstract 3D glowing blue nodes and crystalline structures interconnected by light beams on a deep obsidian black background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkqDVWisNgt55vxiGKyu8HVkqWv0msOSJaKXS6-6Dbgb8PdaMGdMf3qBJeFh4l8sI5DDmQpyWAQvisJK6zz7EI3j_V4vU8Sb6w_iBWCIluNAmX-xNN6Wl1bBifDR58OaFJEoTpOyPQGhs20p2VAbXiVOg5cA4pVfRwIsECI-6fTUyXLQ-83zfOPQPvh4Lw2KBfnGS2NHvfp7-Hqdwk3KaVLsOjyK0i2NHEmWiHRPIg9f8v_GFacUwWtQ3X0J_4T2IGG1aRv2lKW40"/>
+</div>
+</div>
+<!-- Decorative floating panels -->
+<div class="absolute top-10 -right-4 glass-panel p-6 rounded-xl border-primary/30 w-48 shadow-xl">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="bolt">bolt</span>
+<span class="font-data-mono text-xs text-primary">LATENCY</span>
+</div>
+<div class="font-h3 text-h3 text-on-surface">0.42ms</div>
+</div>
+<div class="absolute bottom-10 -left-4 glass-panel p-6 rounded-xl border-white/10 w-56 shadow-xl">
+<div class="font-data-mono text-xs text-slate-500 mb-2">NETWORK THROUGHPUT</div>
+<div class="w-full bg-slate-800 h-1 rounded-full mb-2 overflow-hidden">
+<div class="bg-primary h-full w-[88%]"></div>
+</div>
+<div class="flex justify-between font-data-mono text-[10px] text-slate-400">
+<span>400Gbps</span>
+<span>PEAK</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Features Grid -->
+<section class="py-stack-lg px-gutter max-w-[1440px] mx-auto">
+<div class="mb-stack-lg text-center max-w-2xl mx-auto">
+<h2 class="font-h2 text-h2 text-on-surface mb-stack-sm">Engineered for Performance</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Our stack is designed to handle the most demanding enterprise workloads with zero compromise on stability.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-gutter">
+<!-- Large Feature -->
+<div class="md:col-span-2 md:row-span-2 glass-panel p-10 rounded-xl flex flex-col justify-between group cursor-pointer hover:border-primary/40 transition-all">
+<div>
+<div class="p-3 bg-primary/10 w-fit rounded mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="memory">memory</span>
+</div>
+<h3 class="font-h2 text-h2 mb-4">Neural Infrastructure Nodes</h3>
+<p class="font-body-md text-on-surface-variant max-w-md">Scale your intelligence systems with our dedicated neural processing units. Dedicated hardware optimized for massive B2B data modeling and automated logistics.</p>
+</div>
+<div class="mt-8 flex items-center gap-4">
+<span class="font-data-mono text-primary">LEARN SYSTEM SPECS</span>
+<span class="material-symbols-outlined text-primary" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+<!-- Small Feature 1 -->
+<div class="glass-panel p-8 rounded-xl flex flex-col group hover:border-primary/40 transition-all">
+<span class="material-symbols-outlined text-primary mb-4" data-icon="database">database</span>
+<h4 class="font-h3 text-h3 mb-2">Cloud Storage</h4>
+<p class="font-body-md text-on-surface-variant text-sm">Distributed obsidian storage with millisecond retrieval protocols.</p>
+</div>
+<!-- Small Feature 2 -->
+<div class="glass-panel p-8 rounded-xl flex flex-col group hover:border-primary/40 transition-all">
+<span class="material-symbols-outlined text-primary mb-4" data-icon="shield">shield</span>
+<h4 class="font-h3 text-h3 mb-2">Cyber Security</h4>
+<p class="font-body-md text-on-surface-variant text-sm">Military-grade encryption layers for sensitive enterprise transactions.</p>
+</div>
+</div>
+</section>
+<!-- Stats Section -->
+<section class="py-24 border-y border-white/5 bg-white/[0.02]">
+<div class="max-w-[1440px] mx-auto px-gutter grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+<div>
+<div class="font-h1 text-h1 text-on-surface mb-2">99.9%</div>
+<div class="font-data-mono text-label-caps text-slate-500">UPTIME SLA</div>
+</div>
+<div>
+<div class="font-h1 text-h1 text-primary-container mb-2">240+</div>
+<div class="font-data-mono text-label-caps text-slate-500">GLOBAL NODES</div>
+</div>
+<div>
+<div class="font-h1 text-h1 text-on-surface mb-2">&lt;10ms</div>
+<div class="font-data-mono text-label-caps text-slate-500">AVG LATENCY</div>
+</div>
+<div>
+<div class="font-h1 text-h1 text-primary-container mb-2">15k+</div>
+<div class="font-data-mono text-label-caps text-slate-500">ENTERPRISE CLIENTS</div>
+</div>
+</div>
+</section>
+<!-- Configuration Preview Section -->
+<section class="py-stack-lg px-gutter max-w-[1440px] mx-auto">
+<div class="glass-panel rounded-2xl overflow-hidden flex flex-col lg:flex-row shadow-2xl">
+<div class="p-12 lg:w-1/2 flex flex-col justify-center">
+<h2 class="font-h2 text-h2 mb-6">Service Console Preview</h2>
+<p class="font-body-lg text-on-surface-variant mb-8">Take control of your commerce ecosystem with our high-performance configuration dashboard. Real-time monitoring and fluid resource allocation at your fingertips.</p>
+<div class="space-y-4">
+<div class="flex items-center gap-4 p-4 rounded bg-white/5 border border-white/10">
+<span class="material-symbols-outlined text-primary" data-icon="psychology">psychology</span>
+<div class="font-body-md">Neural Network Configuration</div>
+</div>
+<div class="flex items-center gap-4 p-4 rounded bg-white/5 border border-white/10">
+<span class="material-symbols-outlined text-primary" data-icon="speed">speed</span>
+<div class="font-body-md">Real-time Performance Metrics</div>
+</div>
+</div>
+</div>
+<div class="lg:w-1/2 relative min-h-[400px]">
+<img alt="High-tech server room background" class="w-full h-full object-cover" data-alt="ultra-modern server room with glowing blue floor lights and racks of servers in a futuristic dark environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAM4_qtZesEPD2j3T3goFL_WDPDtGBQTDHWmWjzLYh1qPibJk5MTK6_YezlMBd75nkOnq6cZwFvvcudnZHU8TgvdZRc8JGJ6uEaCjHtiXqx2NkRGAflGjUlezvdBc-hCNmTIwxPio8KRHmVCS_052MFbbQ_g_vVeJUsWaZXdPgdZ8zH3ZtCQgxVcTHgNINVYgMgtdQ2IZHYirfGdVMqYSSIb0ImzED-qCgsJMYURKSSlMpnUYj4sWcJQpDRm95ANZJxAj6xnNfe4lc"/>
+<div class="absolute inset-0 bg-gradient-to-r from-background to-transparent lg:block hidden"></div>
+</div>
+</div>
+</section>
+</main>
+<!-- SideNavBar (Contextual Drawer) -->
+<aside class="fixed right-0 top-0 h-full w-80 border-l bg-[#1A1A1C]/80 backdrop-blur-[20px] border-white/10 shadow-2xl shadow-blue-900/20 z-[60] flex flex-col h-full py-8 px-4 translate-x-full lg:translate-x-0 hidden lg:flex">
+<div class="flex items-center gap-4 mb-12 px-4">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center font-bold text-white">EP</div>
+<div>
+<div class="text-lg font-bold text-white font-inter">Service Console</div>
+<div class="text-[10px] uppercase tracking-widest text-slate-500">High-Performance Configuration</div>
+</div>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg bg-white/10 text-[#0066FF] border-r-4 border-[#0066FF] font-inter text-sm uppercase tracking-widest transition-colors duration-300" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="memory">memory</span>
+                Compute Nodes
+            </a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-slate-400 font-inter text-sm uppercase tracking-widest hover:bg-white/5 hover:text-[#0066FF] transition-colors ease-in-out duration-300" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="database">database</span>
+                Cloud Storage
+            </a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-slate-400 font-inter text-sm uppercase tracking-widest hover:bg-white/5 hover:text-[#0066FF] transition-colors ease-in-out duration-300" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="shield">shield</span>
+                Cyber Security
+            </a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-slate-400 font-inter text-sm uppercase tracking-widest hover:bg-white/5 hover:text-[#0066FF] transition-colors ease-in-out duration-300" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="psychology">psychology</span>
+                Neural Networks
+            </a>
+</nav>
+<button class="mt-auto mx-4 bg-primary-container text-white py-4 font-label-caps text-label-caps rounded transition-all hover:glow-blue active:scale-95">
+            Review Configuration
+        </button>
+</aside>
+<!-- Footer -->
+<footer class="mt-stack-lg border-t border-white/5 bg-[#0A0A0B]">
+<div class="w-full max-w-[1440px] mx-auto px-12 py-10 flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex flex-col gap-2">
+<div class="text-sm font-bold text-slate-300">ZE-Commerce</div>
+<p class="font-inter text-xs text-slate-500 uppercase tracking-widest">© 2024 ZE-Commerce. Engineered for Technical Excellence.</p>
+</div>
+<div class="flex flex-wrap gap-8">
+<a class="font-inter text-xs text-slate-600 uppercase tracking-widest hover:text-white transition-colors cursor-pointer" href="#">Service Level Agreement</a>
+<a class="font-inter text-xs text-slate-600 uppercase tracking-widest hover:text-white transition-colors cursor-pointer" href="#">Network Status</a>
+<a class="font-inter text-xs text-slate-600 uppercase tracking-widest hover:text-white transition-colors cursor-pointer" href="#">Enterprise Security</a>
+<a class="font-inter text-xs text-slate-600 uppercase tracking-widest hover:text-white transition-colors cursor-pointer" href="#">Terms of Deployment</a>
+</div>
+</div>
+</footer>
+</body></html>
