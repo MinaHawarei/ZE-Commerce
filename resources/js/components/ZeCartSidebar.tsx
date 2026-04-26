@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { ShoppingCart, Trash2, X } from 'lucide-react';
 
 interface CartItem {
     id: number;
@@ -73,7 +74,7 @@ export default function ZeCartSidebar({ isOpen, closeCart, refreshTrigger }: { i
                 <div className="flex justify-between items-center mb-10">
                     <div className="flex items-center gap-4">
                         <div className="w-10 h-10 rounded-full bg-[#0066ff] flex items-center justify-center font-bold text-white">
-                            <span className="material-symbols-outlined text-sm">shopping_cart</span>
+                            <ShoppingCart aria-hidden="true" className="w-4 h-4 text-white" />
                         </div>
                         <div>
                             <div className="text-lg font-bold text-white font-inter">Cart Details</div>
@@ -81,7 +82,7 @@ export default function ZeCartSidebar({ isOpen, closeCart, refreshTrigger }: { i
                         </div>
                     </div>
                     <button onClick={closeCart} className="text-slate-400 hover:text-white">
-                        <span className="material-symbols-outlined">close</span>
+                        <X aria-hidden="true" className="w-5 h-5" />
                     </button>
                 </div>
                 
@@ -99,7 +100,7 @@ export default function ZeCartSidebar({ isOpen, closeCart, refreshTrigger }: { i
                                     <div className="text-slate-300 font-bold">${item.price_at_purchase}</div>
                                 </div>
                                 <button onClick={() => removeItem(item.id)} className="text-slate-500 hover:text-red-400 transition-colors p-2">
-                                    <span className="material-symbols-outlined text-lg">delete</span>
+                                    <Trash2 aria-hidden="true" className="w-5 h-5" />
                                 </button>
                             </div>
                         ))

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import DashboardLayout from '@/layouts/DashboardLayout';
 import { Head, router, useForm } from '@inertiajs/react';
 import { toast } from 'sonner';
+import { X } from 'lucide-react';
 
 export default function AdminSupportIndex({ tickets }: any) {
     const [selectedTicket, setSelectedTicket] = useState<any>(null);
@@ -43,7 +43,7 @@ const submit = (e: React.FormEvent) => {
                             <div className="flex justify-between items-center p-6 border-b border-white/10 sticky top-0 bg-[#0A0A0B]">
                                 <h3 className="text-xl font-bold text-white font-inter">Manage Ticket #{selectedTicket.id}</h3>
                                 <button onClick={() => setSelectedTicket(null)} className="text-slate-400 hover:text-white">
-                                    <span className="material-symbols-outlined">close</span>
+                                    <X aria-hidden="true" className="w-5 h-5" />
                                 </button>
                             </div>
 

@@ -1,13 +1,12 @@
 import React from 'react';
 import { Head } from '@inertiajs/react';
-import ZeNavbar from '@/components/ZeNavbar';
+import { Rocket, ShieldCheck } from 'lucide-react';
+import LandingLayout from '@/layouts/LandingLayout';
 
 export default function About() {
     return (
-        <div className="bg-[#0A0A0B] min-h-screen text-[#e0e2e8] dark font-inter overflow-x-hidden pt-24 pb-16">
+        <>
             <Head title="About Us - ZE-Commerce" />
-            <ZeNavbar toggleCart={() => {}} />
-
             <div className="max-w-[1000px] mx-auto px-8 py-12 relative z-10">
                 <div className="text-center mb-16">
                     <h1 className="text-4xl md:text-5xl font-black text-white mb-6 tracking-tight">Architects of the Digital Future</h1>
@@ -19,7 +18,7 @@ export default function About() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
                     <div className="bg-white/5 border border-white/10 backdrop-blur-xl p-8 rounded-[24px]">
                         <div className="w-12 h-12 bg-[#0066ff]/20 text-[#0066ff] rounded-lg flex items-center justify-center mb-6">
-                            <span className="material-symbols-outlined">rocket_launch</span>
+                            <Rocket aria-hidden="true" size={20} className="text-current" />
                         </div>
                         <h3 className="text-xl font-bold text-white mb-4">Our Mission</h3>
                         <p className="text-slate-400 leading-relaxed">
@@ -29,7 +28,7 @@ export default function About() {
 
                     <div className="bg-white/5 border border-white/10 backdrop-blur-xl p-8 rounded-[24px]">
                         <div className="w-12 h-12 bg-purple-500/20 text-purple-400 rounded-lg flex items-center justify-center mb-6">
-                            <span className="material-symbols-outlined">security</span>
+                            <ShieldCheck aria-hidden="true" size={20} className="text-current" />
                         </div>
                         <h3 className="text-xl font-bold text-white mb-4">Uncompromising Security</h3>
                         <p className="text-slate-400 leading-relaxed">
@@ -52,6 +51,10 @@ export default function About() {
             <style>{`
                 .font-space { font-family: 'Space Grotesk', sans-serif; }
             `}</style>
-        </div>
+        </>
     );
 }
+
+About.layout = (page: React.ReactNode) => (
+    <LandingLayout className="pt-24 pb-16">{page}</LandingLayout>
+);

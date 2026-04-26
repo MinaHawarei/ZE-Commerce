@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { Link, usePage } from '@inertiajs/react';
+import { Menu, ShoppingCart, User, X } from 'lucide-react';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -29,10 +30,7 @@ interface ZeNavbarProps {
 // ─── Constants ────────────────────────────────────────────────────────────────
 
 const NAV_LINKS: NavLink[] = [
-    { label: 'All Solutions', href: '/services' },
-    { label: 'Infrastructure', href: '/services?category=Web' },
-    { label: 'Intelligence', href: '/services?category=Apps' },
-    { label: 'Enterprise', href: '/services?category=ERP' },
+    { label: 'Our Solutions', href: '/services' },
     { label: 'About Us', href: '/about' },
     { label: 'Contact Us', href: '/contact' },
 ];
@@ -108,7 +106,7 @@ function MobileMenu({
                             onClick={onClose}
                             className="flex items-center gap-2 text-slate-300 hover:text-white transition-colors"
                         >
-                            <span className="material-symbols-outlined text-[#0066FF]">account_circle</span>
+                            <User aria-hidden="true" className="w-5 h-5 text-[#0066FF]" />
                             <span className="text-sm font-medium">{auth.user.name}</span>
                         </Link>
                     ) : (
@@ -175,7 +173,7 @@ export default function ZeNavbar({ toggleCart, cartCount = 0 }: ZeNavbarProps) {
                             aria-label={`Open cart${cartCount > 0 ? `, ${cartCount} items` : ''}`}
                             className="relative text-slate-400 hover:text-[#0066FF] transition-colors cursor-pointer"
                         >
-                            <span className="material-symbols-outlined">shopping_cart</span>
+                            <ShoppingCart aria-hidden="true" className="w-5 h-5" />
                             {cartCount > 0 && (
                                 <span className="absolute -top-1.5 -right-1.5 min-w-[18px] h-[18px] px-0.5 bg-[#0066FF] text-white text-[10px] font-bold rounded-full flex items-center justify-center leading-none">
                                     {cartCount > 99 ? '99+' : cartCount}
@@ -188,9 +186,9 @@ export default function ZeNavbar({ toggleCart, cartCount = 0 }: ZeNavbarProps) {
                             <Link
                                 href={dashboardHref}
                                 aria-label="Go to dashboard"
-                                className="material-symbols-outlined text-[#0066FF] hover:text-white transition-colors"
+                                className="text-[#0066FF] hover:text-white transition-colors"
                             >
-                                account_circle
+                                <User aria-hidden="true" className="w-6 h-6" />
                             </Link>
                         ) : (
                             <Link
@@ -207,23 +205,13 @@ export default function ZeNavbar({ toggleCart, cartCount = 0 }: ZeNavbarProps) {
                             onClick={handleMobileToggle}
                             aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
                             aria-expanded={mobileOpen}
-                            className="md:hidden flex flex-col gap-1.5 text-slate-400 hover:text-white transition-colors p-1"
+                            className="md:hidden text-slate-400 hover:text-white transition-colors p-1"
                         >
-                            <span
-                                className={`block w-5 h-0.5 bg-current transition-all duration-300 origin-center ${
-                                    mobileOpen ? 'rotate-45 translate-y-2' : ''
-                                }`}
-                            />
-                            <span
-                                className={`block w-5 h-0.5 bg-current transition-all duration-300 ${
-                                    mobileOpen ? 'opacity-0 scale-x-0' : ''
-                                }`}
-                            />
-                            <span
-                                className={`block w-5 h-0.5 bg-current transition-all duration-300 origin-center ${
-                                    mobileOpen ? '-rotate-45 -translate-y-2' : ''
-                                }`}
-                            />
+                            {mobileOpen ? (
+                                <X aria-hidden="true" className="w-6 h-6" />
+                            ) : (
+                                <Menu aria-hidden="true" className="w-6 h-6" />
+                            )}
                         </button>
                     </div>
                 </div>

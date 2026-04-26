@@ -1,5 +1,6 @@
 import React from 'react';
 import { Head, Link } from '@inertiajs/react';
+import { Home, ShieldX } from 'lucide-react';
 
 export default function Forbidden() {
     return (
@@ -11,7 +12,7 @@ export default function Forbidden() {
                 
                 <div className="relative z-10">
                     <div className="w-20 h-20 bg-red-500/10 border border-red-500/20 rounded-full flex items-center justify-center mx-auto mb-6 text-red-500">
-                        <span className="material-symbols-outlined text-4xl">gpp_bad</span>
+                        <ShieldX aria-hidden="true" className="w-10 h-10" />
                     </div>
                     
                     <h1 className="text-5xl font-black text-white mb-4 tracking-tight">403</h1>
@@ -22,7 +23,7 @@ export default function Forbidden() {
                     </p>
                     
                     <Link href="/" className="inline-flex items-center gap-2 bg-[#0066ff] text-white px-8 py-4 rounded-lg font-space font-bold text-xs uppercase tracking-widest transition-all hover:bg-blue-600 shadow-[0_0_20px_rgba(0,102,255,0.3)] active:scale-95">
-                        <span className="material-symbols-outlined text-sm">home</span>
+                        <Home aria-hidden="true" className="w-4 h-4" />
                         Return to Public Matrix
                     </Link>
                 </div>

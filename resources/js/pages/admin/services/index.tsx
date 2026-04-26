@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { router, useForm , Head} from '@inertiajs/react';
 import { toast } from 'sonner';
+import { Check, Cpu, Globe, Pencil, Plus, Smartphone, Trash2, X } from 'lucide-react';
 
 interface Service {
     id: number;
@@ -108,7 +109,7 @@ export default function ServicesIndex({ services }: { services: Service[] }) {
                             <div className="flex justify-between items-center p-6 border-b border-white/10">
                                 <h3 className="text-xl font-bold text-white font-inter">{editingService ? 'Edit Service' : 'Create Service'}</h3>
                                 <button onClick={closeModal} className="text-slate-400 hover:text-white">
-                                    <span className="material-symbols-outlined">close</span>
+                                    <X aria-hidden="true" className="w-5 h-5" />
                                 </button>
                             </div>
 
@@ -184,7 +185,14 @@ export default function ServicesIndex({ services }: { services: Service[] }) {
                                         {data.features_list.map((feature, idx) => (
                                             <div key={idx} className="flex items-center gap-2 bg-[#0066ff]/20 text-[#b3c5ff] px-3 py-1 rounded-full text-xs">
                                                 {feature}
-                                                <span onClick={() => removeFeature(idx)} className="material-symbols-outlined text-[14px] cursor-pointer hover:text-red-400">close</span>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => removeFeature(idx)}
+                                                    aria-label="Remove feature"
+                                                    className="hover:text-red-400"
+                                                >
+                                                    <X aria-hidden="true" className="w-[14px] h-[14px]" />
+                                                </button>
                                             </div>
                                         ))}
                                     </div>
@@ -211,7 +219,7 @@ export default function ServicesIndex({ services }: { services: Service[] }) {
                         onClick={() => openModal()}
                         className="flex items-center gap-2 bg-[#0066ff] hover:bg-blue-600 text-white px-5 py-2.5 rounded-lg font-medium text-sm transition-all shadow-[0_0_15px_rgba(0,102,255,0.3)] active:scale-95"
                     >
-                        <span className="material-symbols-outlined text-[20px]">add</span>
+                        <Plus aria-hidden="true" className="w-5 h-5" />
                         New Service
                     </button>
                 </div>
@@ -221,16 +229,20 @@ export default function ServicesIndex({ services }: { services: Service[] }) {
                         <div key={service.id} className="glass-panel p-6 rounded-xl group hover:border-[#0066ff]/30 transition-all flex flex-col">
                             <div className="flex justify-between items-start mb-4">
                                 <div className="p-3 bg-[#0066ff]/10 rounded-lg text-[#0066ff]">
-                                    <span className="material-symbols-outlined">
-                                        {service.category === 'ERP' ? 'memory' : service.category === 'Web' ? 'language' : 'smartphone'}
-                                    </span>
+                                    {service.category === 'ERP' ? (
+                                        <Cpu aria-hidden="true" className="w-5 h-5" />
+                                    ) : service.category === 'Web' ? (
+                                        <Globe aria-hidden="true" className="w-5 h-5" />
+                                    ) : (
+                                        <Smartphone aria-hidden="true" className="w-5 h-5" />
+                                    )}
                                 </div>
                                 <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                                     <button onClick={() => openModal(service)} className="w-8 h-8 rounded bg-white/5 flex items-center justify-center text-slate-300 hover:text-[#0066ff] hover:bg-[#0066ff]/10 transition-colors">
-                                        <span className="material-symbols-outlined text-[18px]">edit</span>
+                                        <Pencil aria-hidden="true" className="w-[18px] h-[18px]" />
                                     </button>
                                     <button onClick={() => handleDelete(service.id)} className="w-8 h-8 rounded bg-white/5 flex items-center justify-center text-slate-300 hover:text-red-500 hover:bg-red-500/10 transition-colors">
-                                        <span className="material-symbols-outlined text-[18px]">delete</span>
+                                        <Trash2 aria-hidden="true" className="w-[18px] h-[18px]" />
                                     </button>
                                 </div>
                             </div>
@@ -244,7 +256,7 @@ export default function ServicesIndex({ services }: { services: Service[] }) {
                                     <div className="space-y-2 mb-6">
                                         {service.features_list.slice(0, 3).map((feature, idx) => (
                                             <div key={idx} className="flex items-start gap-2 text-xs text-slate-300">
-                                                <span className="material-symbols-outlined text-[14px] text-green-400 mt-0.5">check</span>
+                                                <Check aria-hidden="true" className="w-[14px] h-[14px] text-green-400 mt-0.5" />
                                                 <span className="truncate">{feature}</span>
                                             </div>
                                         ))}

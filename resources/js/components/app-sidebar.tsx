@@ -1,5 +1,5 @@
 import { Link } from '@inertiajs/react';
-import { BookOpen, FolderGit2, LayoutGrid } from 'lucide-react';
+import { BookOpen, Boxes, Headset, LayoutDashboard, PackageSearch, Ticket, Users } from 'lucide-react';
 import AppLogo from '@/components/app-logo';
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
@@ -30,44 +30,44 @@ const mainNavItems: NavItem[] = isAdmin
         {
             title: 'Overview',
             href: '/admin',
-            icon: LayoutGrid,
+            icon: LayoutDashboard,
         },
         {
             title: 'Manage Orders',
             href: '/admin/orders',
-            icon: FolderGit2,
+            icon: PackageSearch,
         },
         {
             title: 'Service Catalog',
             href: '/admin/services',
-            icon: FolderGit2,
+            icon: Boxes,
         },
         {
             title: 'User Management',
             href: '#',
-            icon: FolderGit2,
+            icon: Users,
         },
         {
             title: 'Tech Support',
             href: support.index.url(),
-            icon: FolderGit2,
+            icon: Headset,
         },
       ]
     : [
         {
             title: 'My Services',
             href: dashboard(),
-            icon: LayoutGrid,
+            icon: LayoutDashboard,
         },
         {
             title: 'My Orders',
-            href: '/orders',
-            icon: FolderGit2,
+            href: '#',
+            icon: PackageSearch,
         },
         {
             title: 'Support Tickets',
             href: '/support',
-            icon: FolderGit2,
+            icon: Ticket,
         },
     ];
 

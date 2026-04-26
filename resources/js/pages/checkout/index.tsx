@@ -1,6 +1,7 @@
 import React from 'react';
 import { Head, useForm } from '@inertiajs/react';
 import ZeNavbar from '@/components/ZeNavbar';
+import { CreditCard } from 'lucide-react';
 
 export default function Checkout({ cart, items, totals }: any) {
     const { data, setData, post, processing, errors } = useForm({
@@ -28,7 +29,7 @@ export default function Checkout({ cart, items, totals }: any) {
                     <div className="lg:col-span-7">
                         <div className="bg-white/5 border border-white/10 backdrop-blur-xl p-8 rounded-[24px]">
                             <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-                                <span className="material-symbols-outlined text-[#0066ff]">credit_card</span>
+                                <CreditCard aria-hidden="true" className="w-5 h-5 text-[#0066ff]" />
                                 Payment Details
                             </h2>
                             
@@ -57,7 +58,7 @@ export default function Checkout({ cart, items, totals }: any) {
                                             placeholder="4242 4242 4242 4242"
                                             required 
                                         />
-                                        <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500">payment</span>
+                                        <CreditCard aria-hidden="true" className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 w-5 h-5" />
                                     </div>
                                     {errors.card_number && <div className="text-red-500 text-xs mt-1">{errors.card_number}</div>}
                                 </div>

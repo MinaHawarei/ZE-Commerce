@@ -1,5 +1,6 @@
 import React from 'react';
 import { Head, Link } from '@inertiajs/react';
+import { Plus } from 'lucide-react';
 
 
 export default function SupportIndex({ tickets }: any) {
@@ -13,7 +14,7 @@ export default function SupportIndex({ tickets }: any) {
                         <h3 className="text-2xl font-bold text-white font-inter mb-2">View and manage your active support tickets.</h3>
                     </div>
                     <Link href="/support/create" className="bg-[#0066ff] hover:bg-blue-600 text-white px-5 py-2.5 rounded-lg font-medium text-sm transition-all shadow-[0_0_15px_rgba(0,102,255,0.3)] flex items-center gap-2">
-                        <span className="material-symbols-outlined text-[18px]">add</span>
+                        <Plus aria-hidden="true" className="w-[18px] h-[18px]" />
                         New Ticket
                     </Link>
                 </div>

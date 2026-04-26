@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { ArrowRight, Cpu, Globe, Smartphone } from 'lucide-react';
 
 interface Service {
     id: number;
@@ -81,9 +82,13 @@ export default function ZeServiceCards({ setCartUpdated }: { setCartUpdated: () 
                          <div key={service.id} className={`${idx === 0 ? 'md:col-span-2 md:row-span-2' : ''} glass-panel p-8 rounded-xl flex flex-col justify-between group cursor-pointer hover:border-[#0066ff]/40 transition-all`}>
                             <div>
                                 <div className="p-3 bg-[#0066ff]/10 w-fit rounded mb-6 group-hover:scale-110 transition-transform">
-                                    <span className="material-symbols-outlined text-[#0066ff] text-3xl">
-                                        {service.category === 'ERP' ? 'memory' : service.category === 'Web' ? 'language' : 'smartphone'}
-                                    </span>
+                                    {service.category === 'ERP' ? (
+                                        <Cpu aria-hidden="true" className="w-8 h-8 text-[#0066ff]" />
+                                    ) : service.category === 'Web' ? (
+                                        <Globe aria-hidden="true" className="w-8 h-8 text-[#0066ff]" />
+                                    ) : (
+                                        <Smartphone aria-hidden="true" className="w-8 h-8 text-[#0066ff]" />
+                                    )}
                                 </div>
                                 <h3 className={`${idx === 0 ? 'text-3xl' : 'text-2xl'} font-inter font-semibold mb-4 text-white`}>{service.title}</h3>
                                 <p className="font-inter text-slate-300 mb-6">{service.description}</p>
@@ -93,7 +98,7 @@ export default function ZeServiceCards({ setCartUpdated }: { setCartUpdated: () 
                                 <button onClick={() => addToCart(service.id)} className="bg-[#0066ff] text-white font-space font-bold text-xs tracking-widest px-6 py-3 rounded transition-all hover:bg-blue-600">
                                     ADD TO CART
                                 </button>
-                                <span className="material-symbols-outlined text-[#0066ff]">arrow_forward</span>
+                                <ArrowRight aria-hidden="true" className="w-5 h-5 text-[#0066ff]" />
                             </div>
                         </div>
                     ))}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Head, Link } from '@inertiajs/react';
 import ZeNavbar from '@/components/ZeNavbar';
+import { BadgeCheck, CheckCircle2 } from 'lucide-react';
 
 export default function CheckoutSuccess({ order }: any) {
     return (
@@ -10,7 +11,7 @@ export default function CheckoutSuccess({ order }: any) {
 
             <div className="max-w-[600px] w-full px-8 relative z-10 text-center">
                 <div className="w-24 h-24 bg-green-500/10 border border-green-500/30 rounded-full flex items-center justify-center mx-auto mb-8 text-green-500 shadow-[0_0_30px_rgba(34,197,94,0.3)]">
-                    <span className="material-symbols-outlined text-5xl">check_circle</span>
+                    <CheckCircle2 aria-hidden="true" className="w-12 h-12" />
                 </div>
                 
                 <h1 className="text-4xl font-black text-white mb-4 tracking-tight">Payment Successful</h1>
@@ -35,7 +36,7 @@ export default function CheckoutSuccess({ order }: any) {
                         <ul className="space-y-3">
                             {order.items_snapshot.map((item: any, idx: number) => (
                                 <li key={idx} className="flex items-center gap-3">
-                                    <span className="material-symbols-outlined text-green-500 text-[18px]">verified</span>
+                                    <BadgeCheck aria-hidden="true" className="w-[18px] h-[18px] text-green-500" />
                                     <span className="text-slate-200 text-sm">{item.title}</span>
                                 </li>
                             ))}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Head, useForm } from '@inertiajs/react';
-import ZeNavbar from '@/components/ZeNavbar';
+import { Mail, MapPin } from 'lucide-react';
+import LandingLayout from '@/layouts/LandingLayout';
 import { toast } from 'sonner';
 
 export default function Contact() {
@@ -18,10 +19,8 @@ export default function Contact() {
     };
 
     return (
-        <div className="bg-[#0A0A0B] min-h-screen text-[#e0e2e8] dark font-inter overflow-x-hidden pt-24 pb-16">
+        <>
             <Head title="Contact - ZE-Commerce" />
-            <ZeNavbar toggleCart={() => {}} />
-
             <div className="max-w-[1000px] mx-auto px-8 py-12 relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
                     <div>
@@ -34,13 +33,13 @@ export default function Contact() {
                         <div className="space-y-6">
                             <div className="flex items-center gap-4 text-slate-300">
                                 <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">
-                                    <span className="material-symbols-outlined text-[#0066ff]">mail</span>
+                                    <Mail aria-hidden="true" size={18} className="text-[#0066ff]" />
                                 </div>
                                 <span className="font-space">enterprise@ze-commerce.com</span>
                             </div>
                             <div className="flex items-center gap-4 text-slate-300">
                                 <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">
-                                    <span className="material-symbols-outlined text-[#0066ff]">location_on</span>
+                                    <MapPin aria-hidden="true" size={18} className="text-[#0066ff]" />
                                 </div>
                                 <span className="font-space">Sector 7G, Silicon Matrix, Earth</span>
                             </div>
@@ -91,6 +90,10 @@ export default function Contact() {
             <style>{`
                 .font-space { font-family: 'Space Grotesk', sans-serif; }
             `}</style>
-        </div>
+        </>
     );
 }
+
+Contact.layout = (page: React.ReactNode) => (
+    <LandingLayout className="pt-24 pb-16">{page}</LandingLayout>
+);

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Head, Link } from '@inertiajs/react';
 import ZeNavbar from '@/components/ZeNavbar';
+import { Info, XCircle } from 'lucide-react';
 
 export default function CheckoutFailure({ order }: any) {
     return (
@@ -10,7 +11,7 @@ export default function CheckoutFailure({ order }: any) {
 
             <div className="max-w-[600px] w-full px-8 relative z-10 text-center">
                 <div className="w-24 h-24 bg-red-500/10 border border-red-500/30 rounded-full flex items-center justify-center mx-auto mb-8 text-red-500 shadow-[0_0_30px_rgba(239,68,68,0.3)]">
-                    <span className="material-symbols-outlined text-5xl">error</span>
+                    <XCircle aria-hidden="true" className="w-12 h-12" />
                 </div>
                 
                 <h1 className="text-4xl font-black text-white mb-4 tracking-tight">Payment Failed</h1>
@@ -31,7 +32,7 @@ export default function CheckoutFailure({ order }: any) {
                     </div>
                     
                     <div className="text-sm text-red-400 bg-red-500/10 border border-red-500/20 p-4 rounded-lg flex items-start gap-3">
-                        <span className="material-symbols-outlined text-lg mt-0.5">info</span>
+                        <Info aria-hidden="true" className="w-5 h-5 mt-0.5" />
                         <div>
                             <span className="font-bold block mb-1">Transaction Declined</span>
                             No charges were made to your account. You can safely attempt the payment again.

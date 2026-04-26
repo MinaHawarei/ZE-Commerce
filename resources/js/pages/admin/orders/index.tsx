@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { router , Head } from '@inertiajs/react';
 import { toast } from 'sonner';
+import { ListOrdered, X } from 'lucide-react';
 
 
 interface Order {
@@ -52,7 +53,7 @@ export default function OrdersIndex({ orders, filters }: PageProps) {
                         <div className="flex justify-between items-center p-6 border-b border-white/10 sticky top-0 bg-[#0A0A0B]">
                             <h3 className="text-xl font-bold text-white font-inter">Order {selectedOrder.reference_number}</h3>
                             <button onClick={() => setSelectedOrder(null)} className="text-slate-400 hover:text-white">
-                                <span className="material-symbols-outlined">close</span>
+                                <X aria-hidden="true" className="w-5 h-5" />
                             </button>
                         </div>
                         <div className="p-6 space-y-6">
@@ -103,7 +104,7 @@ export default function OrdersIndex({ orders, filters }: PageProps) {
             <div className="glass-panel rounded-xl overflow-hidden flex flex-col">
                 <div className="p-6 border-b border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 bg-[#0A0A0B]/50">
                     <div className="flex items-center gap-2">
-                        <span className="material-symbols-outlined text-[#0066ff]">list_alt</span>
+                        <ListOrdered aria-hidden="true" className="w-5 h-5 text-[#0066ff]" />
                         <h2 className="text-lg font-bold text-white font-inter">All Transactions</h2>
                     </div>
 

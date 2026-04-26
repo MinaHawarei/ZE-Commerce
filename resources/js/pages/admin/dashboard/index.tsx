@@ -1,9 +1,9 @@
 import React from 'react';
-import DashboardLayout from '@/layouts/DashboardLayout';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area
 } from 'recharts';
 import { Head } from '@inertiajs/react';
+import { CheckCircle2, Clock, CreditCard, UserPlus } from 'lucide-react';
 
 interface PageProps {
     stats: {
@@ -43,7 +43,7 @@ export default function Dashboard({ stats, recent_orders, sales_data, top_servic
                         <div className="absolute -right-4 -top-4 w-24 h-24 bg-[#0066ff]/10 rounded-full blur-2xl group-hover:bg-[#0066ff]/20 transition-all"></div>
                         <div className="flex justify-between items-start mb-4">
                             <div className="text-slate-400 text-sm font-medium uppercase tracking-wider">Total Revenue</div>
-                            <span className="material-symbols-outlined text-[#0066ff]">payments</span>
+                            <CreditCard aria-hidden="true" className="w-5 h-5 text-[#0066ff]" />
                         </div>
                         <div className="text-3xl font-bold text-white font-space">${Number(stats.total_revenue).toLocaleString()}</div>
                     </div>
@@ -52,7 +52,7 @@ export default function Dashboard({ stats, recent_orders, sales_data, top_servic
                         <div className="absolute -right-4 -top-4 w-24 h-24 bg-green-500/10 rounded-full blur-2xl group-hover:bg-green-500/20 transition-all"></div>
                         <div className="flex justify-between items-start mb-4">
                             <div className="text-slate-400 text-sm font-medium uppercase tracking-wider">Paid Orders</div>
-                            <span className="material-symbols-outlined text-green-500">check_circle</span>
+                            <CheckCircle2 aria-hidden="true" className="w-5 h-5 text-green-500" />
                         </div>
                         <div className="text-3xl font-bold text-white font-space">{stats.paid_orders}</div>
                     </div>
@@ -61,7 +61,7 @@ export default function Dashboard({ stats, recent_orders, sales_data, top_servic
                         <div className="absolute -right-4 -top-4 w-24 h-24 bg-orange-500/10 rounded-full blur-2xl group-hover:bg-orange-500/20 transition-all"></div>
                         <div className="flex justify-between items-start mb-4">
                             <div className="text-slate-400 text-sm font-medium uppercase tracking-wider">Pending Orders</div>
-                            <span className="material-symbols-outlined text-orange-500">pending</span>
+                            <Clock aria-hidden="true" className="w-5 h-5 text-orange-500" />
                         </div>
                         <div className="text-3xl font-bold text-white font-space">{stats.pending_orders}</div>
                     </div>
@@ -70,7 +70,7 @@ export default function Dashboard({ stats, recent_orders, sales_data, top_servic
                         <div className="absolute -right-4 -top-4 w-24 h-24 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition-all"></div>
                         <div className="flex justify-between items-start mb-4">
                             <div className="text-slate-400 text-sm font-medium uppercase tracking-wider">New Users (Month)</div>
-                            <span className="material-symbols-outlined text-purple-500">person_add</span>
+                            <UserPlus aria-hidden="true" className="w-5 h-5 text-purple-500" />
                         </div>
                         <div className="text-3xl font-bold text-white font-space">+{stats.new_users_month}</div>
                         <div className="text-xs text-slate-500 mt-2">Total Users: {stats.total_users}</div>

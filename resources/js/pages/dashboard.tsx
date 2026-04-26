@@ -1,5 +1,6 @@
 import { Head, Link  } from '@inertiajs/react';
 import { dashboard } from '@/routes';
+import { Cpu, Globe, Package, Smartphone } from 'lucide-react';
 
 interface ServiceItem {
     order_id: number;
@@ -22,9 +23,13 @@ export default function Dashboard({ my_services }: { my_services: ServiceItem[] 
 
                             <div className="flex justify-between items-start mb-6">
                                 <div className="p-3 bg-[#0066ff]/10 rounded-lg text-[#0066ff]">
-                                    <span className="material-symbols-outlined">
-                                        {service.category === 'ERP' ? 'memory' : service.category === 'Web' ? 'language' : 'smartphone'}
-                                    </span>
+                                    {service.category === 'ERP' ? (
+                                        <Cpu aria-hidden="true" className="w-5 h-5" />
+                                    ) : service.category === 'Web' ? (
+                                        <Globe aria-hidden="true" className="w-5 h-5" />
+                                    ) : (
+                                        <Smartphone aria-hidden="true" className="w-5 h-5" />
+                                    )}
                                 </div>
                                 <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border bg-green-500/10 text-green-400 border-green-500/20">
                                     ACTIVE
@@ -55,7 +60,7 @@ export default function Dashboard({ my_services }: { my_services: ServiceItem[] 
             ) : (
                 <div className="glass-panel p-12 rounded-xl text-center">
                     <div className="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-4 text-slate-500">
-                        <span className="material-symbols-outlined text-3xl">inventory_2</span>
+                        <Package aria-hidden="true" className="w-8 h-8" />
                     </div>
                     <h3 className="text-xl font-bold text-white mb-2">No Active Deployments</h3>
                     <p className="text-slate-400 mb-6 max-w-md mx-auto">You have not purchased any enterprise services yet. Explore our catalog to find the right solution.</p>

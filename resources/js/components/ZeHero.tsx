@@ -1,4 +1,5 @@
 import React from 'react';
+import { Zap } from 'lucide-react';
 
 export default function ZeHero() {
     return (
@@ -33,7 +34,7 @@ export default function ZeHero() {
                     {/* Decorative floating panels */}
                     <div className="absolute top-10 -right-4 glass-panel p-6 rounded-xl border-blue-400/30 w-48 shadow-xl">
                         <div className="flex items-center gap-2 mb-2">
-                            <span className="material-symbols-outlined text-blue-400 text-sm">bolt</span>
+                            <Zap aria-hidden="true" className="w-4 h-4 text-blue-400" />
                             <span className="font-space font-medium text-xs text-blue-400">LATENCY</span>
                         </div>
                         <div className="font-inter font-bold text-2xl text-white">0.42ms</div>

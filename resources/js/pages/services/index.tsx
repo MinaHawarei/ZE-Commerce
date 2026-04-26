@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Head, Link, router } from '@inertiajs/react';
-import ZeNavbar from '@/components/ZeNavbar';
+import { Eye, Search, SearchX, ShoppingCart } from 'lucide-react';
+import LandingLayout from '@/layouts/LandingLayout';
 
 interface Service {
     id: number;
@@ -45,14 +46,8 @@ export default function ServicesIndex({ services, categories, activeCategory, se
     };
 
     return (
-        <div className="bg-[#0A0A0B] min-h-screen text-[#e0e2e8] selection:bg-[#0066ff] selection:text-white dark font-inter overflow-x-hidden pt-24 pb-16">
-            <Head title="Tech Services - ZE-Commerce">
-                <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet" />
-                <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-            </Head>
-
-            <ZeNavbar toggleCart={() => setCartOpen(true)} />
-
+        <>
+            <Head title="Tech Services - ZE-Commerce" />
             <div className="max-w-[1440px] mx-auto px-8 relative z-10">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6">
                     <div>
@@ -69,7 +64,11 @@ export default function ServicesIndex({ services, categories, activeCategory, se
                                 placeholder="Search services..."
                                 className="w-full bg-white/5 border border-white/10 rounded-full py-3 pl-10 pr-4 text-sm text-white focus:border-[#0066ff] outline-none"
                             />
-                            <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+                            <Search
+                                aria-hidden="true"
+                                className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+                                size={18}
+                            />
                         </form>
 
                         <div className="flex gap-2">
@@ -109,10 +108,10 @@ export default function ServicesIndex({ services, categories, activeCategory, se
                                 <div className="text-2xl font-black text-white font-space">${Number(service.price).toLocaleString()}</div>
                                 <div className="flex gap-3">
                                     <Link href={`/services/${service.slug}`} className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-slate-300 hover:bg-white/5 transition-all">
-                                        <span className="material-symbols-outlined text-[20px]">visibility</span>
+                                        <Eye aria-hidden="true" size={20} className="text-current" />
                                     </Link>
                                     <button onClick={() => handleAddToCart(service.id)} className="w-12 h-12 rounded-full bg-[#0066FF] flex items-center justify-center text-white hover:bg-blue-600 transition-all shadow-[0_0_20px_rgba(0,102,255,0.4)] active:scale-95">
-                                        <span className="material-symbols-outlined text-[20px]">add_shopping_cart</span>
+                                        <ShoppingCart aria-hidden="true" size={20} className="text-current" />
                                     </button>
                                 </div>
                             </div>
@@ -120,7 +119,7 @@ export default function ServicesIndex({ services, categories, activeCategory, se
                     )) : (
                         <div className="col-span-full py-20 text-center">
                             <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6">
-                                <span className="material-symbols-outlined text-3xl text-slate-500">search_off</span>
+                                <SearchX aria-hidden="true" size={32} className="text-slate-500" />
                             </div>
                             <h3 className="text-xl font-bold text-white mb-2">No services found</h3>
                             <p className="text-slate-400">Try adjusting your filters or search term.</p>
@@ -131,6 +130,10 @@ export default function ServicesIndex({ services, categories, activeCategory, se
             <style>{`
                 .font-space { font-family: 'Space Grotesk', sans-serif; }
             `}</style>
-        </div>
+        </>
     );
 }
+
+ServicesIndex.layout = (page: React.ReactNode) => (
+    <LandingLayout className="pt-24 pb-16">{page}</LandingLayout>
+);
