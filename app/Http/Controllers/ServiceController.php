@@ -25,7 +25,7 @@ class ServiceController extends Controller
             $query->ofCategory($category);
         }
 
-        $services   = $query->get();
+        $services = $query->get();
         $categories = ['ERP', 'Web', 'Apps'];
 
         if ($request->wantsJson()) {
@@ -37,9 +37,9 @@ class ServiceController extends Controller
         }
 
         return Inertia::render('services/index', [
-            'services'        => $services,
-            'categories'      => $categories,
-            'activeCategory'  => $category,
+            'services' => $services,
+            'categories' => $categories,
+            'activeCategory' => $category,
         ]);
     }
 

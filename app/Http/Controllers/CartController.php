@@ -46,9 +46,9 @@ class CartController extends Controller
         $validated = $request->validated();
 
         $item = $this->cartService->addItem(
-            request:   $request,
+            request: $request,
             serviceId: $validated['service_id'],
-            addons:    $validated['addons'] ?? null,
+            addons: $validated['addons'] ?? null,
         );
 
         // Load relationships for the response
@@ -59,8 +59,8 @@ class CartController extends Controller
 
         return response()->json([
             'message' => "'{$item->service->title}' added to cart.",
-            'item'    => $item,
-            'totals'  => $totals,
+            'item' => $item,
+            'totals' => $totals,
         ], 201);
     }
 
@@ -84,7 +84,7 @@ class CartController extends Controller
 
         return response()->json([
             'message' => 'Item removed from cart.',
-            'totals'  => $details['totals'],
+            'totals' => $details['totals'],
         ]);
     }
 }

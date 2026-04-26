@@ -34,8 +34,8 @@ class AddToCartRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'service_id'     => ['required', 'integer', 'exists:services,id'],
-            'addons'         => ['nullable', 'array'],
+            'service_id' => ['required', 'integer', 'exists:services,id'],
+            'addons' => ['nullable', 'array'],
             'addons.*.label' => ['required_with:addons', 'string', 'max:200'],
             'addons.*.price' => ['required_with:addons', 'numeric', 'min:0'],
         ];
@@ -49,7 +49,7 @@ class AddToCartRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'service_id'     => 'service',
+            'service_id' => 'service',
             'addons.*.label' => 'add-on name',
             'addons.*.price' => 'add-on price',
         ];

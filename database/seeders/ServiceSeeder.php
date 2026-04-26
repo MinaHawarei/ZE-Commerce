@@ -19,10 +19,10 @@ class ServiceSeeder extends Seeder
         $services = [
             // ── ERP ─────────────────────────────────────────────────────────
             [
-                'title'        => 'Custom ERP System',
-                'description'  => 'A fully tailored Enterprise Resource Planning solution built around your business workflows. Covers finance, HR, procurement, inventory, and reporting in a single unified platform.',
-                'category'     => 'ERP',
-                'price'        => 12500.00,
+                'title' => 'Custom ERP System',
+                'description' => 'A fully tailored Enterprise Resource Planning solution built around your business workflows. Covers finance, HR, procurement, inventory, and reporting in a single unified platform.',
+                'category' => 'ERP',
+                'price' => 12500.00,
                 'features_list' => [
                     'Multi-company & multi-currency support',
                     'Real-time inventory tracking',
@@ -31,13 +31,13 @@ class ServiceSeeder extends Seeder
                     'Custom reporting dashboards',
                     '1 year of free maintenance',
                 ],
-                'image_path'   => 'services/erp-system.webp',
+                'image_path' => 'services/erp-system.webp',
             ],
             [
-                'title'        => 'ERP Integration & Migration',
-                'description'  => 'Seamlessly migrate your legacy data and integrate third-party APIs (accounting, CRM, logistics) into a modern ERP backbone without business disruption.',
-                'category'     => 'ERP',
-                'price'        => 4800.00,
+                'title' => 'ERP Integration & Migration',
+                'description' => 'Seamlessly migrate your legacy data and integrate third-party APIs (accounting, CRM, logistics) into a modern ERP backbone without business disruption.',
+                'category' => 'ERP',
+                'price' => 4800.00,
                 'features_list' => [
                     'Legacy data audit & cleansing',
                     'REST & SOAP API connector library',
@@ -45,15 +45,15 @@ class ServiceSeeder extends Seeder
                     'Post-go-live support (3 months)',
                     'Staff training sessions',
                 ],
-                'image_path'   => 'services/erp-integration.webp',
+                'image_path' => 'services/erp-integration.webp',
             ],
 
             // ── Web ──────────────────────────────────────────────────────────
             [
-                'title'        => 'E-Commerce Web Platform',
-                'description'  => 'A high-performance, SEO-optimised e-commerce storefront delivered with a headless architecture, fast checkout flows, and full payment gateway integration.',
-                'category'     => 'Web',
-                'price'        => 3200.00,
+                'title' => 'E-Commerce Web Platform',
+                'description' => 'A high-performance, SEO-optimised e-commerce storefront delivered with a headless architecture, fast checkout flows, and full payment gateway integration.',
+                'category' => 'Web',
+                'price' => 3200.00,
                 'features_list' => [
                     'Headless React + Laravel backend',
                     'Payment gateway integration (Stripe / PayPal)',
@@ -62,13 +62,13 @@ class ServiceSeeder extends Seeder
                     'Mobile-first responsive design',
                     'Core Web Vitals optimised (LCP < 2.5s)',
                 ],
-                'image_path'   => 'services/ecommerce-web.webp',
+                'image_path' => 'services/ecommerce-web.webp',
             ],
             [
-                'title'        => 'Corporate Website & CMS',
-                'description'  => 'A sleek, brand-aligned corporate website backed by a user-friendly CMS so your team can update content without touching code.',
-                'category'     => 'Web',
-                'price'        => 1800.00,
+                'title' => 'Corporate Website & CMS',
+                'description' => 'A sleek, brand-aligned corporate website backed by a user-friendly CMS so your team can update content without touching code.',
+                'category' => 'Web',
+                'price' => 1800.00,
                 'features_list' => [
                     'Custom UI/UX design',
                     'Integrated CMS (FilamentPHP)',
@@ -77,15 +77,15 @@ class ServiceSeeder extends Seeder
                     'SEO meta management',
                     'Contact forms with spam protection',
                 ],
-                'image_path'   => 'services/corporate-website.webp',
+                'image_path' => 'services/corporate-website.webp',
             ],
 
             // ── Apps ─────────────────────────────────────────────────────────
             [
-                'title'        => 'Cross-Platform Mobile App',
-                'description'  => 'Launch on iOS and Android simultaneously with a single React Native codebase. From MVP to enterprise-grade, we cover design, development, testing, and App Store submission.',
-                'category'     => 'Apps',
-                'price'        => 7500.00,
+                'title' => 'Cross-Platform Mobile App',
+                'description' => 'Launch on iOS and Android simultaneously with a single React Native codebase. From MVP to enterprise-grade, we cover design, development, testing, and App Store submission.',
+                'category' => 'Apps',
+                'price' => 7500.00,
                 'features_list' => [
                     'React Native (iOS + Android)',
                     'Push notifications & deep linking',
@@ -94,7 +94,7 @@ class ServiceSeeder extends Seeder
                     'App Store & Play Store submission',
                     '6-month post-launch support',
                 ],
-                'image_path'   => 'services/mobile-app.webp',
+                'image_path' => 'services/mobile-app.webp',
             ],
         ];
 

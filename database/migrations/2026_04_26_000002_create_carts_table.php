@@ -26,8 +26,7 @@ return new class extends Migration
             $table->foreignId('user_id')
                 ->nullable()
                 ->constrained()
-                ->nullOnDelete()  // If user is deleted, keep the cart record (for analytics)
-                ->index();
+                ->nullOnDelete(); // MySQL automatically creates an index for foreign keys
 
             // Nullable: populated for guest/anonymous users
             $table->string('session_id', 100)->nullable()->index();

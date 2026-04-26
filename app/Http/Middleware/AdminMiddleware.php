@@ -12,7 +12,7 @@ class AdminMiddleware
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param  Closure(Request): (Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
     {
@@ -20,8 +20,8 @@ class AdminMiddleware
             if ($request->expectsJson()) {
                 abort(403, 'Unauthorized action.');
             }
-            
-            return redirect()->route('dashboard')->with('error', 'Unauthorized access.');
+
+            return \Inertia\Inertia::render('errors/403')->toResponse($request)->setStatusCode(403);
         }
 
         return $next($request);

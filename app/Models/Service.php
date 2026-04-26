@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -33,7 +34,7 @@ class Service extends Model
      */
     protected $casts = [
         'features_list' => 'array',   // Automatically decode/encode the JSON column
-        'price'         => 'decimal:2',
+        'price' => 'decimal:2',
     ];
 
     // ─── Auto-generate slug from title ──────────────────────────────────────
@@ -71,7 +72,7 @@ class Service extends Model
      *
      * Usage: Service::ofCategory('ERP')->get()
      *
-     * @param  \Illuminate\Database\Eloquent\Builder<self>  $query
+     * @param  Builder<self>  $query
      */
     public function scopeOfCategory($query, string $category): void
     {

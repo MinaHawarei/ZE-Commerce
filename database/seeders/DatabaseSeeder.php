@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use App\Models\Order;
 use App\Enums\UserRole;
+use App\Models\Order;
+use App\Models\Service;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,25 +17,25 @@ class DatabaseSeeder extends Seeder
     {
         // Create an Admin user
         $admin = User::factory()->create([
-            'name'  => 'Admin User',
+            'name' => 'Admin User',
             'email' => 'admin@ze-commerce.com',
-            'password' => bcrypt('password'),
-            'role'  => UserRole::ADMIN,
+            'password' => bcrypt('123456789'),
+            'role' => UserRole::ADMIN,
         ]);
 
         // Create a regular Test User
         $user = User::factory()->create([
-            'name'  => 'Test User',
+            'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => bcrypt('password'),
-            'role'  => UserRole::USER,
+            'role' => UserRole::USER,
         ]);
 
         // Seed the services catalogue
         $this->call(ServiceSeeder::class);
 
         // Pre-fill some orders for the test user to populate the dashboard
-        $services = \App\Models\Service::take(3)->get();
+        $services = Service::take(3)->get();
         if ($services->count() > 0) {
             Order::create([
                 'user_id' => $user->id,
@@ -49,14 +50,14 @@ class DatabaseSeeder extends Seeder
                         'title' => $services[0]->title,
                         'category' => $services[0]->category,
                         'price' => $services[0]->price,
-                        'addons' => []
-                    ]
+                        'addons' => [],
+                    ],
                 ],
                 'cardholder_name' => 'Test User',
                 'card_last_four' => '4242',
                 'paid_at' => now()->subDays(2),
             ]);
-            
+
             Order::create([
                 'user_id' => $user->id,
                 'session_id' => null,
@@ -70,8 +71,8 @@ class DatabaseSeeder extends Seeder
                         'title' => $services[1]->title,
                         'category' => $services[1]->category,
                         'price' => $services[1]->price,
-                        'addons' => []
-                    ]
+                        'addons' => [],
+                    ],
                 ],
                 'cardholder_name' => 'Test User',
                 'card_last_four' => '1234',

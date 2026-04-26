@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -56,7 +57,7 @@ class Cart extends Model
     /**
      * Scope: only active carts.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder<self>  $query
+     * @param  Builder<self>  $query
      */
     public function scopeActive($query): void
     {

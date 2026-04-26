@@ -25,7 +25,7 @@ class CartItem extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'addons'            => 'array',    // JSON → PHP array automatically
+        'addons' => 'array',    // JSON → PHP array automatically
         'price_at_purchase' => 'decimal:2',
     ];
 

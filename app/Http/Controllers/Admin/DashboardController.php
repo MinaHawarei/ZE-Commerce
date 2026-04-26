@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
@@ -21,8 +22,10 @@ class DashboardController extends Controller
         
         $pendingOrdersCount = Order::where('payment_status', 'pending')->count();
         $paidOrdersCount = Order::where('payment_status', 'paid')->count();
+        $failedOrdersCount = Order::where('payment_status', 'failed')->count();
         
         $usersCount = User::count();
+        $newUsersThisMonth = User::where('created_at', '>=', Carbon::now()->startOfMonth())->count();
         $servicesCount = Service::count();
 
         // Fetch recent orders
@@ -40,9 +43,7 @@ class DashboardController extends Controller
             ];
         });
 
-        // Top services based on items snapshot - a bit complex since it's JSON, 
-        // for simplicity let's just send some dummy top services if real query is too heavy
-        // Actually we can do it simply by getting all paid orders, decoding json and counting
+        // Top services based on items snapshot
         $paidOrders = Order::where('payment_status', 'paid')->get();
         $serviceCounts = [];
         foreach ($paidOrders as $order) {
@@ -68,7 +69,9 @@ class DashboardController extends Controller
                 'total_revenue' => $totalRevenue,
                 'pending_orders' => $pendingOrdersCount,
                 'paid_orders' => $paidOrdersCount,
+                'failed_orders' => $failedOrdersCount,
                 'total_users' => $usersCount,
+                'new_users_month' => $newUsersThisMonth,
                 'total_services' => $servicesCount,
             ],
             'recent_orders' => $recentOrders,

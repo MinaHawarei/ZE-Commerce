@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
@@ -33,8 +34,8 @@ class Order extends Model
      */
     protected $casts = [
         'items_snapshot' => 'array',
-        'total_amount'   => 'decimal:2',
-        'paid_at'        => 'datetime',
+        'total_amount' => 'decimal:2',
+        'paid_at' => 'datetime',
     ];
 
     // ─── Relationships ───────────────────────────────────────────────────────
@@ -54,7 +55,7 @@ class Order extends Model
     /**
      * Scope: only paid orders.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder<self>  $query
+     * @param  Builder<self>  $query
      */
     public function scopePaid($query): void
     {
@@ -64,7 +65,7 @@ class Order extends Model
     /**
      * Scope: only failed orders.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder<self>  $query
+     * @param  Builder<self>  $query
      */
     public function scopeFailed($query): void
     {
@@ -80,14 +81,14 @@ class Order extends Model
      */
     public static function generateReferenceNumber(): string
     {
-        $date   = now()->format('Ymd');
+        $date = now()->format('Ymd');
         $random = strtoupper(Str::random(6));
 
         $reference = "ZE-{$date}-{$random}";
 
         // Ensure uniqueness (extremely unlikely collision, but safety first)
         while (self::where('reference_number', $reference)->exists()) {
-            $random    = strtoupper(Str::random(6));
+            $random = strtoupper(Str::random(6));
             $reference = "ZE-{$date}-{$random}";
         }
 

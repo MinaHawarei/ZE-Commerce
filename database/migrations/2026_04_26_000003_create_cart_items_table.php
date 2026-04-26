@@ -30,7 +30,7 @@ return new class extends Migration
                 ->restrictOnDelete(); // Prevent accidental service deletion if it's in a cart
 
             // Explicit composite indexes for query performance
-            $table->index('cart_id',    'cart_items_cart_id_index');
+            $table->index('cart_id', 'cart_items_cart_id_index');
             $table->index('service_id', 'cart_items_service_id_index');
 
             // JSON array of add-on objects selected for this line item

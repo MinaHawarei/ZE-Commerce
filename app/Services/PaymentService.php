@@ -31,10 +31,10 @@ class PaymentService
      */
     public function processPayment(
         Request $request,
-        string  $cardNumber,
-        string  $cardholderName,
-        string  $expiryDate,
-        string  $cvv,
+        string $cardNumber,
+        string $cardholderName,
+        string $expiryDate,
+        string $cvv,
     ): array {
         $cart = $this->cartService->resolveCart($request);
         $cart->load('items.service');
@@ -42,7 +42,7 @@ class PaymentService
         // Guard: empty cart
         if ($cart->items->isEmpty()) {
             return [
-                'order'   => null,
+                'order' => null,
                 'success' => false,
                 'message' => 'Your cart is empty. Please add services before checking out.',
             ];
@@ -52,29 +52,29 @@ class PaymentService
             // Build the items snapshot (preserves purchase state)
             $itemsSnapshot = $cart->items->map(fn ($item) => [
                 'service_id' => $item->service_id,
-                'title'      => $item->service->title,
-                'category'   => $item->service->category,
-                'price'      => $item->price_at_purchase,
-                'addons'     => $item->addons,
+                'title' => $item->service->title,
+                'category' => $item->service->category,
+                'price' => $item->price_at_purchase,
+                'addons' => $item->addons,
             ])->toArray();
 
             // Calculate total
             $totals = $this->cartService->calculateTotals($cart);
 
             // Extract last 4 digits of card
-            $cleanCard  = preg_replace('/\D/', '', $cardNumber);
-            $lastFour   = substr($cleanCard, -4);
+            $cleanCard = preg_replace('/\D/', '', $cardNumber);
+            $lastFour = substr($cleanCard, -4);
 
             // Create the order in 'pending' state
             $order = Order::create([
-                'user_id'          => Auth::id(),
-                'session_id'       => $request->session()->getId(),
+                'user_id' => Auth::id(),
+                'session_id' => $request->session()->getId(),
                 'reference_number' => Order::generateReferenceNumber(),
-                'total_amount'     => $totals['grand_total'],
-                'items_snapshot'   => $itemsSnapshot,
-                'cardholder_name'  => $cardholderName,
-                'card_last_four'   => $lastFour,
-                'payment_status'   => 'pending',
+                'total_amount' => $totals['grand_total'],
+                'items_snapshot' => $itemsSnapshot,
+                'cardholder_name' => $cardholderName,
+                'card_last_four' => $lastFour,
+                'payment_status' => 'pending',
             ]);
 
             // ── Mock Payment Gateway Logic ───────────────────────────────
@@ -85,14 +85,14 @@ class PaymentService
                 $order->update([
                     'payment_status' => 'paid',
                     'transaction_id' => $transactionResult['transaction_id'],
-                    'paid_at'        => now(),
+                    'paid_at' => now(),
                 ]);
 
                 // Clear the user's cart
                 $this->clearCart($cart);
 
                 return [
-                    'order'   => $order->fresh(),
+                    'order' => $order->fresh(),
                     'success' => true,
                     'message' => 'Payment successful! Your services have been deployed.',
                 ];
@@ -105,7 +105,7 @@ class PaymentService
             ]);
 
             return [
-                'order'   => $order->fresh(),
+                'order' => $order->fresh(),
                 'success' => false,
                 'message' => $transactionResult['decline_reason'],
             ];
@@ -126,19 +126,19 @@ class PaymentService
     private function simulateTransaction(string $cleanCardNumber): array
     {
         // Generate a realistic-looking transaction ID
-        $transactionId = 'TXN-' . strtoupper(Str::random(8)) . '-' . time();
+        $transactionId = 'TXN-'.strtoupper(Str::random(8)).'-'.time();
 
         // ── The Magic Number: 4242 ──
         if (str_contains($cleanCardNumber, '4242')) {
             return [
-                'success'        => true,
+                'success' => true,
                 'transaction_id' => $transactionId,
                 'decline_reason' => null,
             ];
         }
 
         return [
-            'success'        => false,
+            'success' => false,
             'transaction_id' => $transactionId,
             'decline_reason' => 'Transaction declined. Card number not authorized by the payment processor.',
         ];

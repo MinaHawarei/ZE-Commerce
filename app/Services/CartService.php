@@ -5,6 +5,8 @@ namespace App\Services;
 use App\Models\Cart;
 use App\Models\CartItem;
 use App\Models\Service;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -25,7 +27,7 @@ class CartService
      */
     public function resolveCart(Request $request): Cart
     {
-        $userId    = Auth::id();
+        $userId = Auth::id();
         $sessionId = $request->session()->getId();
 
         // Authenticated user — match by user_id
@@ -48,7 +50,7 @@ class CartService
     /**
      * Return the active cart with items eager-loaded, plus computed totals.
      *
-     * @return array{cart: Cart, items: \Illuminate\Database\Eloquent\Collection, totals: array}
+     * @return array{cart: Cart, items: Collection, totals: array}
      */
     public function getCartDetails(Request $request): array
     {
@@ -56,8 +58,8 @@ class CartService
         $cart->load('items.service');
 
         return [
-            'cart'   => $cart,
-            'items'  => $cart->items,
+            'cart' => $cart,
+            'items' => $cart->items,
             'totals' => $this->calculateTotals($cart),
         ];
     }
@@ -74,25 +76,25 @@ class CartService
      *
      * @param  array<int, array{label: string, price: float}>|null  $addons
      *
-     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+     * @throws ModelNotFoundException
      */
     public function addItem(Request $request, int $serviceId, ?array $addons = null): CartItem
     {
         $service = Service::findOrFail($serviceId);
-        $cart    = $this->resolveCart($request);
+        $cart = $this->resolveCart($request);
 
         return DB::transaction(function () use ($cart, $service, $addons): CartItem {
             // Calculate the snapshot price (service base + add-on prices)
-            $addonsTotal     = $this->sumAddons($addons);
+            $addonsTotal = $this->sumAddons($addons);
             $priceAtPurchase = (float) $service->price + $addonsTotal;
 
             return CartItem::firstOrCreate(
                 [
-                    'cart_id'    => $cart->id,
+                    'cart_id' => $cart->id,
                     'service_id' => $service->id,
                 ],
                 [
-                    'addons'            => $addons,
+                    'addons' => $addons,
                     'price_at_purchase' => $priceAtPurchase,
                 ],
             );
@@ -130,22 +132,22 @@ class CartService
             ? $cart->items
             : $cart->items()->with('service')->get();
 
-        $subtotal    = 0.0;
+        $subtotal = 0.0;
         $addonsTotal = 0.0;
 
         foreach ($items as $item) {
             $servicePrice = (float) $item->service->price;
-            $itemAddons   = $this->sumAddons($item->addons);
+            $itemAddons = $this->sumAddons($item->addons);
 
-            $subtotal    += $servicePrice;
+            $subtotal += $servicePrice;
             $addonsTotal += $itemAddons;
         }
 
         return [
-            'items_count'  => $items->count(),
-            'subtotal'     => round($subtotal, 2),
+            'items_count' => $items->count(),
+            'subtotal' => round($subtotal, 2),
             'addons_total' => round($addonsTotal, 2),
-            'grand_total'  => round($subtotal + $addonsTotal, 2),
+            'grand_total' => round($subtotal + $addonsTotal, 2),
         ];
     }
 
@@ -157,7 +159,7 @@ class CartService
      */
     public function mergeGuestCart(Request $request): void
     {
-        $userId    = Auth::id();
+        $userId = Auth::id();
         $sessionId = $request->session()->getId();
 
         if (! $userId) {
@@ -181,11 +183,11 @@ class CartService
             foreach ($guestCart->items as $guestItem) {
                 CartItem::firstOrCreate(
                     [
-                        'cart_id'    => $userCart->id,
+                        'cart_id' => $userCart->id,
                         'service_id' => $guestItem->service_id,
                     ],
                     [
-                        'addons'            => $guestItem->addons,
+                        'addons' => $guestItem->addons,
                         'price_at_purchase' => $guestItem->price_at_purchase,
                     ],
                 );
