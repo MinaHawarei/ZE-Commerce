@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Head, Link, router } from '@inertiajs/react';
 import ZeNavbar from '@/components/ZeNavbar';
-import ZeCartSidebar from '@/components/ZeCartSidebar';
 
 interface Service {
     id: number;
@@ -53,7 +52,6 @@ export default function ServicesIndex({ services, categories, activeCategory, se
             </Head>
 
             <ZeNavbar toggleCart={() => setCartOpen(true)} />
-            <ZeCartSidebar isOpen={cartOpen} closeCart={() => setCartOpen(false)} refreshTrigger={cartRefresh} />
 
             <div className="max-w-[1440px] mx-auto px-8 relative z-10">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6">
@@ -64,20 +62,20 @@ export default function ServicesIndex({ services, categories, activeCategory, se
 
                     <div className="w-full md:w-auto flex flex-col sm:flex-row gap-4">
                         <form onSubmit={handleSearch} className="relative flex-1 sm:w-64">
-                            <input 
-                                type="text" 
+                            <input
+                                type="text"
                                 value={searchTerm}
                                 onChange={e => setSearchTerm(e.target.value)}
-                                placeholder="Search services..." 
+                                placeholder="Search services..."
                                 className="w-full bg-white/5 border border-white/10 rounded-full py-3 pl-10 pr-4 text-sm text-white focus:border-[#0066ff] outline-none"
                             />
                             <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
                         </form>
-                        
+
                         <div className="flex gap-2">
                             {categories.map((cat: string) => (
-                                <Link 
-                                    key={cat} 
+                                <Link
+                                    key={cat}
                                     href={`/services?category=${cat}${searchTerm ? `&search=${searchTerm}` : ''}`}
                                     className={`px-4 py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all ${
                                         activeCategory === cat ? 'bg-[#0066ff] text-white shadow-[0_0_15px_rgba(0,102,255,0.3)]' : 'bg-white/5 text-slate-400 hover:bg-white/10'
@@ -87,7 +85,7 @@ export default function ServicesIndex({ services, categories, activeCategory, se
                                 </Link>
                             ))}
                         </div>
-                        
+
                         {(activeCategory || search) && (
                             <button onClick={handleClearFilters} className="px-4 py-3 rounded-full text-xs font-bold uppercase tracking-widest bg-red-500/10 text-red-400 hover:bg-red-500/20 transition-all">
                                 Clear
@@ -100,13 +98,13 @@ export default function ServicesIndex({ services, categories, activeCategory, se
                     {services.length > 0 ? services.map((service: Service) => (
                         <div key={service.id} className="bg-white/5 border border-white/10 backdrop-blur-xl p-8 rounded-[24px] group hover:bg-white/10 transition-all duration-300 relative overflow-hidden flex flex-col">
                             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#0066FF] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                            
+
                             <div className="flex-1 mb-8">
                                 <div className="text-[#0066FF] text-[10px] uppercase tracking-[0.2em] font-bold mb-4">{service.category}</div>
                                 <h3 className="text-2xl font-bold text-white mb-4 leading-tight">{service.title}</h3>
                                 <p className="text-slate-400 text-sm leading-relaxed">{service.description}</p>
                             </div>
-                            
+
                             <div className="flex items-center justify-between mt-auto">
                                 <div className="text-2xl font-black text-white font-space">${Number(service.price).toLocaleString()}</div>
                                 <div className="flex gap-3">
