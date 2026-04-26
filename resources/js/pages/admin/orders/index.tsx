@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { router } from '@inertiajs/react';
-import AdminLayout from '@/layouts/AdminLayout';
+import { router , Head } from '@inertiajs/react';
 import { toast } from 'sonner';
+
 
 interface Order {
     id: number;
@@ -42,7 +42,9 @@ export default function OrdersIndex({ orders, filters }: PageProps) {
     };
 
     return (
-        <AdminLayout title="Order Management">
+            <>
+            <Head title="Orders" />
+            <div className="p-3">
             {/* Modal for Order Details */}
             {selectedOrder && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
@@ -63,15 +65,15 @@ export default function OrdersIndex({ orders, filters }: PageProps) {
                                 <div>
                                     <div className="text-slate-500 uppercase tracking-widest text-xs mb-1">Payment Status</div>
                                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${
-                                        selectedOrder.payment_status === 'paid' ? 'bg-green-500/10 text-green-400 border-green-500/20' : 
-                                        selectedOrder.payment_status === 'pending' ? 'bg-orange-500/10 text-orange-400 border-orange-500/20' : 
+                                        selectedOrder.payment_status === 'paid' ? 'bg-green-500/10 text-green-400 border-green-500/20' :
+                                        selectedOrder.payment_status === 'pending' ? 'bg-orange-500/10 text-orange-400 border-orange-500/20' :
                                         'bg-red-500/10 text-red-400 border-red-500/20'
                                     }`}>
                                         {selectedOrder.payment_status.toUpperCase()}
                                     </span>
                                 </div>
                             </div>
-                            
+
                             <div>
                                 <div className="text-slate-500 uppercase tracking-widest text-xs mb-3">Service Snapshot</div>
                                 <div className="space-y-3">
@@ -104,11 +106,11 @@ export default function OrdersIndex({ orders, filters }: PageProps) {
                         <span className="material-symbols-outlined text-[#0066ff]">list_alt</span>
                         <h2 className="text-lg font-bold text-white font-inter">All Transactions</h2>
                     </div>
-                    
+
                     <div className="flex items-center gap-3">
                         <span className="text-sm text-slate-400 font-medium">Filter by Status:</span>
-                        <select 
-                            value={filters.status || ''} 
+                        <select
+                            value={filters.status || ''}
                             onChange={handleStatusFilter}
                             className="bg-[#0A0A0B] border border-white/10 rounded-lg text-sm text-slate-200 px-4 py-2 outline-none focus:border-[#0066ff] focus:ring-1 focus:ring-[#0066ff] transition-all"
                         >
@@ -144,12 +146,12 @@ export default function OrdersIndex({ orders, filters }: PageProps) {
                                     </td>
                                     <td className="p-4 text-white font-space font-medium">${order.total_amount}</td>
                                     <td className="p-4">
-                                        <select 
+                                        <select
                                             value={order.payment_status}
                                             onChange={(e) => updateStatus(order.id, e.target.value)}
                                             className={`text-xs font-medium rounded-lg border px-3 py-1 outline-none transition-all ${
-                                                order.payment_status === 'paid' ? 'bg-green-500/10 text-green-400 border-green-500/20 focus:border-green-500' : 
-                                                order.payment_status === 'pending' ? 'bg-orange-500/10 text-orange-400 border-orange-500/20 focus:border-orange-500' : 
+                                                order.payment_status === 'paid' ? 'bg-green-500/10 text-green-400 border-green-500/20 focus:border-green-500' :
+                                                order.payment_status === 'pending' ? 'bg-orange-500/10 text-orange-400 border-orange-500/20 focus:border-orange-500' :
                                                 'bg-red-500/10 text-red-400 border-red-500/20 focus:border-red-500'
                                             }`}
                                         >
@@ -162,7 +164,7 @@ export default function OrdersIndex({ orders, filters }: PageProps) {
                                         {new Date(order.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                                     </td>
                                     <td className="p-4 pr-6 text-right">
-                                        <button 
+                                        <button
                                             onClick={() => setSelectedOrder(order)}
                                             className="text-xs font-bold uppercase tracking-widest text-[#0066ff] hover:text-white transition-colors bg-[#0066ff]/10 hover:bg-[#0066ff] px-4 py-2 rounded-lg"
                                         >
@@ -178,7 +180,7 @@ export default function OrdersIndex({ orders, filters }: PageProps) {
                         </tbody>
                     </table>
                 </div>
-                
+
                 {/* Pagination */}
                 {orders.last_page > 1 && (
                     <div className="p-4 border-t border-white/10 flex justify-center gap-2 bg-[#0A0A0B]/50">
@@ -189,7 +191,7 @@ export default function OrdersIndex({ orders, filters }: PageProps) {
                                 onClick={() => link.url && router.visit(link.url)}
                                 dangerouslySetInnerHTML={{ __html: link.label }}
                                 className={`px-4 py-2 text-sm rounded-lg transition-all ${
-                                    link.active ? 'bg-[#0066ff] text-white font-bold shadow-lg' : 
+                                    link.active ? 'bg-[#0066ff] text-white font-bold shadow-lg' :
                                     !link.url ? 'text-slate-600 cursor-not-allowed' : 'bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white'
                                 }`}
                             />
@@ -197,6 +199,15 @@ export default function OrdersIndex({ orders, filters }: PageProps) {
                     </div>
                 )}
             </div>
-        </AdminLayout>
+            </div>
+        </>
     );
 }
+OrdersIndex.layout = {
+    breadcrumbs: [
+        {
+            title: 'Orders',
+            href: '#',
+        },
+    ],
+};

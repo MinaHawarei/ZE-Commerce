@@ -13,31 +13,71 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import { dashboard } from '@/routes';
+import { dashboard , home } from '@/routes';
 import type { NavItem } from '@/types';
+import { usePage } from '@inertiajs/react';
+import support from '@/routes/admin/support';
 
-const mainNavItems: NavItem[] = [
-    {
-        title: 'Dashboard',
-        href: dashboard(),
-        icon: LayoutGrid,
-    },
-];
+
+
+export function AppSidebar() {
+    const { auth } = usePage<any>().props;
+
+const isAdmin = auth?.user?.role === 'admin';
+
+const mainNavItems: NavItem[] = isAdmin
+    ? [
+        {
+            title: 'Overview',
+            href: '/admin',
+            icon: LayoutGrid,
+        },
+        {
+            title: 'Manage Orders',
+            href: '/admin/orders',
+            icon: FolderGit2,
+        },
+        {
+            title: 'Service Catalog',
+            href: '/admin/services',
+            icon: FolderGit2,
+        },
+        {
+            title: 'User Management',
+            href: '#',
+            icon: FolderGit2,
+        },
+        {
+            title: 'Tech Support',
+            href: support.index.url(),
+            icon: FolderGit2,
+        },
+      ]
+    : [
+        {
+            title: 'My Services',
+            href: dashboard(),
+            icon: LayoutGrid,
+        },
+        {
+            title: 'My Orders',
+            href: '/orders',
+            icon: FolderGit2,
+        },
+        {
+            title: 'Support Tickets',
+            href: '/support',
+            icon: FolderGit2,
+        },
+    ];
 
 const footerNavItems: NavItem[] = [
     {
-        title: 'Repository',
-        href: 'https://github.com/laravel/react-starter-kit',
-        icon: FolderGit2,
-    },
-    {
-        title: 'Documentation',
-        href: 'https://laravel.com/docs/starter-kits#react',
+        title: 'Back to Store',
+        href: home(),
         icon: BookOpen,
     },
 ];
-
-export function AppSidebar() {
     return (
         <Sidebar collapsible="icon" variant="inset">
             <SidebarHeader>

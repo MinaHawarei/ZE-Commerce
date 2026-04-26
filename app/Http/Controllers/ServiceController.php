@@ -25,6 +25,13 @@ class ServiceController extends Controller
             $query->ofCategory($category);
         }
 
+        // Optional search
+        $search = $request->query('search');
+        if ($search) {
+            $query->where('title', 'like', '%' . $search . '%')
+                  ->orWhere('description', 'like', '%' . $search . '%');
+        }
+
         $services = $query->get();
         $categories = ['ERP', 'Web', 'Apps'];
 
@@ -40,6 +47,7 @@ class ServiceController extends Controller
             'services' => $services,
             'categories' => $categories,
             'activeCategory' => $category,
+            'search' => $search,
         ]);
     }
 

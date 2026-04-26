@@ -111,7 +111,11 @@ export default function ZeCartSidebar({ isOpen, closeCart, refreshTrigger }: { i
                         <span className="text-slate-400 uppercase tracking-widest text-xs">Grand Total</span>
                         <span className="text-white font-bold text-xl">${cartData?.totals.grand_total || 0}</span>
                     </div>
-                    <button className="w-full bg-[#0066ff] text-white py-4 font-space font-bold text-xs uppercase tracking-widest rounded transition-all glow-blue hover:bg-blue-600 active:scale-95 disabled:bg-slate-700 disabled:shadow-none" disabled={!cartData || cartData.items.length === 0}>
+                    <button 
+                        onClick={() => window.location.href = '/checkout'}
+                        className="w-full bg-[#0066ff] text-white py-4 font-space font-bold text-xs uppercase tracking-widest rounded transition-all glow-blue hover:bg-blue-600 active:scale-95 disabled:bg-slate-700 disabled:shadow-none" 
+                        disabled={!cartData || cartData.items.length === 0}
+                    >
                         PROCEED TO CHECKOUT
                     </button>
                 </div>
